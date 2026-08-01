@@ -107,10 +107,15 @@ function opponentName(game: FlightObject | undefined, theirs: FlightObject | und
 /**
  * Project one event from our school's point of view.
  *
- * `game.homeTeam` is authoritative for home/away — the `teamEvents` array order
- * is not. The opponent is named by its *school* because both teams' displayName
- * is the sport label ("Girls JV Volleyball"), which would otherwise render an
- * event as "Girls JV Volleyball at Girls JV Volleyball".
+ * Home/away comes from the `game` block, never from `teamEvents` order, and is
+ * resolved in this order: our school on `homeTeam` -> home; else our school on
+ * `awayTeam` -> away (scores rows can carry `homeTeam: null`); else another home
+ * side present -> away by elimination, since these pages list only our own
+ * school's games; else null.
+ *
+ * The opponent is named by its *school* because both teams' displayName is the
+ * sport label ("Girls JV Volleyball"), which would otherwise render an event as
+ * "Girls JV Volleyball at Girls JV Volleyball".
  */
 export function normalizeEvent(raw: FlightObject, schoolId: string): NormalizedEvent {
   const game = raw.game as FlightObject | undefined;

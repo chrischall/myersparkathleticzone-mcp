@@ -81,7 +81,7 @@ These matter more than the happy path, because none of them look like failures:
 
 Two traps encoded in `src/normalize.ts`:
 
-- **`game.homeTeam` is authoritative for home/away** — `teamEvents` order is not.
+- **Home/away comes from the `game` block, never from `teamEvents` order.** `game.homeTeam` is the primary signal but not the only one: scores rows can carry `homeTeam: null` while `awayTeam` names our school, so resolution is `homeTeam` is us → home; else `awayTeam` is us → away; else another home side present → away by elimination (these pages list only our own school's games); else null.
 - **Name the opponent by its school** (`schools[0].name`), never by `displayName`: both sides' `displayName` is the sport label, so using it renders `Girls JV Volleyball at Girls JV Volleyball`.
 
 `location.name` is the venue and can differ from the home school (neutral sites).
