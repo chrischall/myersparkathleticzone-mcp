@@ -72,6 +72,30 @@ export interface NormalizedEvent {
   isPostponed: boolean;
   isScrimmage: boolean;
   isTba: boolean;
+  /** Present on scores pages; null on schedule pages and for unplayed games. */
+  homeScore: number | null;
+  awayScore: number | null;
+  /** The same two scores from our school's point of view. */
+  teamScore: number | null;
+  opponentScore: number | null;
+  result: 'win' | 'loss' | 'tie' | null;
+}
+
+const num = (v: unknown): number | null => (typeof v === 'number' && Number.isFinite(v) ? v : null);
+
+/**
+ * The opponent's school name.
+ *
+ * Scores pages return `awayTeam: null` and put the opponent in a separate
+ * `game.opponent` block (itself nested: `opponent.opponent.name`), so reading
+ * only `awayTeam` silently loses the opponent on exactly the pages where the
+ * result matters.
+ */
+function opponentName(game: FlightObject | undefined, theirs: FlightObject | undefined): string | null {
+  const fromTeam = str(((theirs?.schools as FlightObject[] | undefined) ?? [])[0]?.name);
+  if (fromTeam) return fromTeam;
+  const block = game?.opponent as FlightObject | undefined;
+  return str((block?.opponent as FlightObject | undefined)?.name) ?? str(block?.name);
 }
 
 /**
@@ -90,20 +114,41 @@ export function normalizeEvent(raw: FlightObject, schoolId: string): NormalizedE
   const isHome = home ? schoolIds(home).includes(schoolId) : null;
   const mine = isHome === null ? undefined : isHome ? home : away;
   const theirs = isHome === null ? undefined : isHome ? away : home;
-  const opponentSchool = ((theirs?.schools as FlightObject[] | undefined) ?? [])[0];
+
+  const homeScore = num((game as FlightObject | undefined)?.homeScore);
+  const awayScore = num((game as FlightObject | undefined)?.awayScore);
+  const teamScore = isHome === null ? null : isHome ? homeScore : awayScore;
+  const opponentScore = isHome === null ? null : isHome ? awayScore : homeScore;
+
+  // Each side's score is stored independently upstream, so half-entered rows
+  // (3-null, null-4) are common. A missing score is unknown, never zero — so a
+  // result is derived only when both are present.
+  const result =
+    teamScore === null || opponentScore === null
+      ? null
+      : teamScore > opponentScore
+        ? 'win'
+        : teamScore < opponentScore
+          ? 'loss'
+          : 'tie';
 
   return {
     id: str(raw.id),
     eventType: str(raw.eventType),
     start: str(raw.start),
     team: str(mine?.displayName),
-    opponent: str(opponentSchool?.name),
+    opponent: opponentName(game, theirs),
     isHome,
     venue: named(raw.location),
     isCancelled: raw.isCancelled === true,
     isPostponed: raw.isPostponed === true,
     isScrimmage: raw.isScrimmage === true,
     isTba: raw.isTba === true,
+    homeScore,
+    awayScore,
+    teamScore,
+    opponentScore,
+    result,
   };
 }
 

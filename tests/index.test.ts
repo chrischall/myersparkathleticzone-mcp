@@ -42,13 +42,14 @@ describe('tool roster', () => {
     await harness.close();
   });
 
-  it('flags the scores tool as unverified in its description', async () => {
-    // The scores payload was never observed; the description must say so
-    // rather than implying the shape is known.
+  it('warns in the scores description that a missing score is not zero', async () => {
+    // Real data has half-entered games (3-null, null-4). A caller that reads a
+    // null as 0 invents a scoreline, so the description must say so.
     const harness = await createTestHarness(registerScheduleTools);
     const { tools } = await harness.client.listTools();
     const scores = tools.find((t) => t.name === 'mpaz_get_scores');
-    expect(scores?.description).toMatch(/unverified/i);
+    expect(scores?.description).toMatch(/never zero|not zero/i);
+    expect(scores?.description).not.toMatch(/unverified/i);
     await harness.close();
   });
 });

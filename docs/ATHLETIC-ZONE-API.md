@@ -45,7 +45,7 @@ Also ruled out: source maps (404), `sitemap.xml` / `robots.txt` (the `[domain]` 
 | `/schedule` | `year` | all-school; **a window of upcoming events, not a season** |
 | `/sport/<slug>/schedule` | `team`, `year` | one team's full season |
 | `/sport/<slug>/roster` | `team`, `year` | coaches, players |
-| `/sport/<slug>/scores` | `team`, `year` | **unverified — see below** |
+| `/sport/<slug>/scores` | `team`, `year` | completed games + scores; different shape to `/schedule` |
 | `/media/photos` | — | galleries; `/media/photos/<uuid>` for one |
 | `/page/<uuid>` | — | CMS pages (forms, coach contacts, links) |
 
@@ -60,7 +60,7 @@ These matter more than the happy path, because none of them look like failures:
 - **A stale or bogus `team` id returns HTTP 200**, with a full page titled `Team Roster Not Found` / `Team Scores Not Found`. Harvesting it yields an empty array that reads as "this team has no games". Detected via the title prop — see `NOT_FOUND_TITLE_RE` in `src/client.ts`.
 - **Team ids are per school year.** `4931777` (8th-grade football, 2024/2025) is not valid for 2026-2027.
 - **Omitting `team`/`year` 307-redirects**, and `fetch` follows redirects by default, so the request silently lands on a data-less shell rather than erroring. The tools require both params so this cannot be reached through them.
-- **Only the current school year holds data.** `2025-2026` and `2024-2025` render the shell with zero events. An empty prior season is correct, not a fault.
+- **Myers Park's all-school `/schedule` is empty for past years** (`2025-2026`, `2024-2025` → zero events) **even though its per-team pages still serve them** — `/sport/boys-football/scores?team=5105193&year=2024-2025` returns 6 real games. This is tenant-specific: Ballantyne Ridge's all-school `/schedule?year=2025-2026` returns events normally. So "past seasons are empty" is false as a platform property; only the discovery path differs, which is why `collectTeams` falls back to the sport pages' cross-year team selector.
 
 ## Entity shapes
 
@@ -111,6 +111,15 @@ The all-school schedule embeds **opponent teams alongside ours**, so results mus
 | 7840894 | Girls JV Volleyball |
 | 7840933 | Girls JV Field Hockey |
 
+**Sport pages carry a second, cross-year team selector** whose entries have **no `schools` array** — they are implicitly the school's own, being listed on its own sport page, so the opponent filter must *not* be applied to them. This is the only route to a past season's team ids when the all-school schedule is empty. It is sport-dependent: boys-football exposes historical middle-school teams, girls-volleyball and girls-field-hockey expose none.
+
+| id | displayName | year |
+|---|---|---|
+| 5105193 | Boys Middle School Football | 2024/2025 |
+| 4931777 | Boys 8th Grade Football | 2024/2025 |
+| 5527213 | Boys Middle School Football | 2023/2024 |
+| 5020814 | Boys 8th Grade Football | 2023/2024 |
+
 ### Coach (`coachPosition`)
 
 ```jsonc
@@ -131,6 +140,37 @@ The roster container exposes `roster.players`, **empty (`[]`) on every team chec
 
 Videos are **NFHS Network links, not hosted clips**: `sourceUrlType` is `{"id":"2","name":"Anchor Href"}` and `videoLengthSeconds` is `0` on every entry, with `title` holding the team name and `startDatetimeUtc` the game date. A `0` duration is expected, not missing data.
 
-## Scores: explicitly unverified
+## Scores
 
-`mpaz_get_scores` is shipped but **no scores payload has ever been observed**. At build time the 2026-2027 season had not started (first game 2026-08-14, capture date 2026-08-01), and prior seasons carry no data at all on this tenant, so there was nothing to capture. The score field names are unknown; the tool returns the events the page yields plus a note saying so. Re-capture once games have been played, then pin the shape here before projecting it.
+Verified 2026-08-01 against completed games. Myers Park's own 2026-2027 season had not started, so the *scored* captures come from **Ballantyne Ridge** (`ballantyneridgeathleticzone.com`, school id `21785`) — another tenant, reached by pointing the client at its site. Myers Park's own historical games (2023-2024, 2024-2025 middle-school football) were used for the null-`awayTeam` variant.
+
+The scores page returns a **different event shape** to the schedule page:
+
+```jsonc
+{
+  "eventType": "game",
+  "id": "24855916",
+  "start": "2024-10-17T14:42:00.000Z",
+  "startUtc": "2024-10-17T18:42:00Z",        // extra, scores pages only
+  "isCancelled": false,
+  "teamEvents": [ { "id": "47225592", "eventLinks": [] } ],   // eventLinks, NOT team
+  "game": {
+    "id": "24855916",
+    "homeTeam": { "id": "5105193", "displayName": "…", "schools": [ … ], "sport": {…}, "level": {…}, "gender": {…} },
+    "awayTeam": null,                         // often null — see below
+    "opponent": { "id": "1139270", "name": "Away", "opponent": { "id": "21785", "name": "Ballantyne Ridge High School", … } },
+    "homeScore": null,
+    "awayScore": null
+  }
+}
+```
+
+Differences that matter, each of which broke the first implementation:
+
+- **`game.homeScore` / `game.awayScore`** are the score fields — integers or `null`.
+- **The two scores are independently nullable.** Real rows include `0-8`, `3-null`, `null-4` and `null-null`. A missing score is *unknown*, not zero, so `result` is derived only when both are present; otherwise it is `null`.
+- **`awayTeam` is frequently `null`**, with the opponent in a separate nested `game.opponent.opponent` block. Reading only `awayTeam` silently loses the opponent on exactly the pages where the result matters.
+- **`homeTeam` can be absent too** on some rows, so home/away detection must degrade to `null` rather than assume.
+- Scores events carry **no `globalEventId`, `isPostponed`, `isScrimmage` or `isTba`** — those flags exist only on schedule pages.
+
+**Myers Park records almost no scores**: every completed game of theirs observed (8 across three seasons) has `null-null`. A season of fixtures with no results is that school's data entry, not a parsing fault.

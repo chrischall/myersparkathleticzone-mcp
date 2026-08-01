@@ -1,28 +1,63 @@
 import { z } from 'zod';
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { textResult, toolAnnotations, createHelpfulError } from '@chrischall/mcp-utils';
-import { client } from '../client.js';
-import { ownTeams, sportSlug, type Team } from '../normalize.js';
+import { client, type AthleticZoneClient } from '../client.js';
+import { ownTeams, normalizeTeam, sportSlug, type Team } from '../normalize.js';
 import { rankTeams } from '../match.js';
 import { currentSchoolYear, normalizeYear } from '../season.js';
 
 const YearArg = z
   .string()
   .optional()
-  .describe('School year, e.g. "2026-2027". Defaults to the current one. Only the current year holds data.');
+  .describe('School year, e.g. "2026-2027". Defaults to the current one. Past seasons are supported.');
+
+const byName = (a: Team, b: Team) => (a.displayName ?? '').localeCompare(b.displayName ?? '');
+
+/** Team.year is rendered with a slash ("2024/2025"); the query param uses a dash. */
+const toSlashYear = (year: string) => year.replace('-', '/');
 
 /**
- * The all-school schedule is the reliable source of team ids: it embeds the
- * full team record for every team playing in the window, ours and opponents'.
+ * Team ids for a school year.
+ *
+ * The all-school schedule is the primary source — it embeds the full team
+ * record for everything playing that year, ours and opponents'. But it can be
+ * empty for a past season even while the per-team pages still serve it (true of
+ * Myers Park), so we then fall back to the cross-year team selector carried on
+ * each sport page, using the current year's teams as entry points.
+ *
+ * Selector teams have no `schools` array — they are implicitly the school's own,
+ * being listed on its own sport page — so the opponent filter must not be
+ * applied to them.
  */
-async function listTeams(year: string): Promise<Team[]> {
-  const raw = await client.entities('/schedule', 'teams', { year });
-  return ownTeams(raw, client.schoolId).sort((a, b) => (a.displayName ?? '').localeCompare(b.displayName ?? ''));
+export async function collectTeams(
+  api: Pick<AthleticZoneClient, 'entities' | 'schoolId'>,
+  year: string,
+  current: string,
+): Promise<Team[]> {
+  const own = ownTeams(await api.entities('/schedule', 'teams', { year }), api.schoolId);
+  if (own.length > 0 || year === current) return own.sort(byName);
+
+  const entryPoints = new Map<string, string>();
+  for (const t of ownTeams(await api.entities('/schedule', 'teams', { year: current }), api.schoolId)) {
+    if (t.sportSlug && t.id && !entryPoints.has(t.sportSlug)) entryPoints.set(t.sportSlug, t.id);
+  }
+
+  const wanted = toSlashYear(year);
+  const found = new Map<string, Team>();
+  for (const [slug, teamId] of entryPoints) {
+    const raw = await api.entities(`/sport/${slug}/schedule`, 'teams', { team: teamId, year: current });
+    for (const t of raw.map(normalizeTeam)) {
+      if (t.id && t.year === wanted && !found.has(t.id)) found.set(t.id, t);
+    }
+  }
+  return [...found.values()].sort(byName);
 }
 
+const listTeams = (year: string): Promise<Team[]> => collectTeams(client, year, currentSchoolYear());
+
 const NOTE =
-  'Team ids differ per school year — an id from a past season 404s. Only teams with scheduled events in the ' +
-  'current window are listed.';
+  'Team ids differ per school year — an id from one season fails against another. Past seasons are reachable, ' +
+  'though the school may list fewer teams for them.';
 
 export function registerTeamTools(server: McpServer): void {
   server.registerTool(
@@ -77,7 +112,8 @@ export function registerTeamTools(server: McpServer): void {
           hint:
             teams.length > 0
               ? `Known teams: ${teams.map((t) => t.displayName).join(', ')}`
-              : `No teams found for ${season}. Only the current school year holds data on this site.`,
+              : `No teams found for ${season}. The school may not have fielded teams that year, or may not ` +
+                `publish them — try the current school year.`,
         });
       }
 

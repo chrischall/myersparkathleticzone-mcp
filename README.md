@@ -33,7 +33,7 @@ Or in an MCP host's config:
 | `mpaz_resolve_team` | Loose name ("varsity football") → team id |
 | `mpaz_get_schedule` | Upcoming events across every team |
 | `mpaz_get_team_schedule` | One team's full season |
-| `mpaz_get_scores` | One team's results — **score fields unverified**, see below |
+| `mpaz_get_scores` | One team's results, with win/loss/tie from the school's point of view |
 | `mpaz_get_roster` | A team's coaching staff and players |
 | `mpaz_list_news` | Recent news posts |
 | `mpaz_list_videos` | Games with an NFHS Network broadcast link |
@@ -53,14 +53,15 @@ Both optional:
 | `MPAZ_SITE_URL` | `https://www.myersparkathleticzone.com` | Point at another Athletic Zone school site |
 | `MPAZ_SCHOOL_ID` | `10150` | GoFan/PlayOn school id, used to tell your teams from opponents |
 
-The site is one tenant of the PlayOn Sports / SportsEngine "Athletic Zone" platform, so setting both will generally work against another school on the same platform — though only Myers Park has been verified.
+The site is one tenant of the PlayOn Sports / SportsEngine "Athletic Zone" platform, so setting both points the server at another school on it. Verified against Ballantyne Ridge (`https://www.ballantyneridgeathleticzone.com`, school id `21785`) as well as Myers Park.
 
 ## Known limits
 
 These are properties of the upstream site, not bugs, and the tools say so in their output rather than guessing:
 
-- **Only the current school year holds data.** Past seasons render an empty page.
-- **Scores are unverified.** No completed game existed when this server was built, so the score fields have never been observed. An empty result most likely means no games have been played yet.
+- **A missing score is unknown, never zero.** Each side's score is stored independently upstream, so half-entered games (`3-null`, `null-4`) are common. `result` is derived only when both sides are present.
+- **Myers Park records few scores.** Every completed game of theirs observed so far has null scores, so a season may return fixtures with no results at all — that is the school's data entry, not a fault.
+- **Past seasons are reachable, but not via the all-school schedule.** Myers Park's `/schedule` is empty for past years even though the per-team pages still serve them, so `mpaz_list_teams` falls back to the sport pages' cross-year team selector to find those ids.
 - **Most teams publish coaches but not players**, so an empty roster is normal.
 - **The all-school schedule is a window of upcoming events**, not a full season — use `mpaz_get_team_schedule` for that.
 - **Broadcast links are NFHS Network links, not hosted clips** — durations are always `0`.

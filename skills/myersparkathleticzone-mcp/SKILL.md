@@ -34,6 +34,7 @@ If a team tool reports "Team … Not Found", the id is stale — re-resolve it f
 
 ## Caveats worth stating out loud
 
-- **Only the current school year holds data.** A past year returns nothing — that's the site, not a failure. Say so rather than implying the team had no games.
-- **Scores are unverified.** No completed game existed when this server was built, so the score fields were never observed. An empty result most likely means no games have been played yet — don't present it as "lost all games" or invent a record.
+- **A null score is unknown, never zero.** Each side is stored independently upstream, so `3-null` and `null-4` are common; `result` is null unless both sides are present. Never report a null as `0` or infer a win/loss from a half-entered game.
+- **Myers Park records few scores.** Every completed game of theirs seen so far has null scores, so results may be missing across a whole season — say the school didn't record them rather than implying the games weren't played.
+- **Past seasons work**, though the school lists fewer teams for them; `mpaz_list_teams` finds those ids via the sport pages when the all-school schedule is empty.
 - **Broadcast links are NFHS Network links, not clips** — `videoLengthSeconds` is always `0` and `title` is the team name. Don't report a 0-second video.
