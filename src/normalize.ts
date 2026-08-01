@@ -117,7 +117,20 @@ export function normalizeEvent(raw: FlightObject, schoolId: string): NormalizedE
   const home = game?.homeTeam as FlightObject | undefined;
   const away = game?.awayTeam as FlightObject | undefined;
 
-  const isHome = home ? schoolIds(home).includes(schoolId) : null;
+  // Resolve our side by identifying our school directly, and only then fall
+  // back to elimination. Reading `homeTeam` alone throws away a determinable
+  // answer on scores rows where `homeTeam` is null but `awayTeam` names us —
+  // and that also needlessly collapses teamScore/opponentScore/result.
+  const isHome =
+    home && schoolIds(home).includes(schoolId)
+      ? true
+      : away && schoolIds(away).includes(schoolId)
+        ? false
+        : home
+          ? // These pages only list our own school's games, so a home side that
+            // is someone else means we are the away side.
+            false
+          : null;
   const mine = isHome === null ? undefined : isHome ? home : away;
   const theirs = isHome === null ? undefined : isHome ? away : home;
 

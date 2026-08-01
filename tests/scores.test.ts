@@ -87,11 +87,52 @@ describe('scores', () => {
     expect(n.result).toBe('win');
   });
 
-  it('degrades safely when the event carries no homeTeam at all', () => {
-    // Real row (2025-10-06): game.homeTeam is absent, so home/away is unknowable
-    // and must be null rather than defaulting to "away".
+  it('still resolves home/away from awayTeam when homeTeam is missing', () => {
+    // Real row (2025-10-06): game.homeTeam is null but awayTeam names our
+    // school, so "we were away" IS determinable. Giving up here needlessly
+    // collapses teamScore/opponentScore/result too.
     const raw = BR.find((e: any) => e.game && !e.game.homeTeam);
     expect(raw, 'fixture should contain a homeTeam-less row').toBeTruthy();
+    expect(raw.game.awayTeam.schools[0].id).toBe(BR_SCHOOL);
+    const n = normalizeEvent(raw, BR_SCHOOL);
+    expect(n.isHome).toBe(false);
+    // The home side is absent as a *team*, but game.opponent still names it.
+    expect(n.opponent).toBe(raw.game.opponent.opponent.name);
+  });
+
+  it('maps scores through an awayTeam-only row', () => {
+    const raw = {
+      eventType: 'game',
+      start: '2025-10-06T22:00:00.000Z',
+      game: { homeTeam: null, awayTeam: { schools: [{ id: BR_SCHOOL }] }, homeScore: 1, awayScore: 4 },
+    };
+    const n = normalizeEvent(raw, BR_SCHOOL);
+    expect(n.isHome).toBe(false);
+    expect(n.teamScore).toBe(4);
+    expect(n.opponentScore).toBe(1);
+    expect(n.result).toBe('win');
+  });
+
+  it('falls back to elimination when a home side is present but is not us', () => {
+    // These pages list only our own school's games, so an unfamiliar home side
+    // means we are the away side. This is the pre-existing behaviour and is what
+    // schedule rows rely on.
+    const raw = {
+      eventType: 'game',
+      start: '2025-10-06T22:00:00.000Z',
+      game: { homeTeam: { schools: [{ id: '999' }] }, awayTeam: null, homeScore: 1, awayScore: 4 },
+    };
+    const n = normalizeEvent(raw, BR_SCHOOL);
+    expect(n.isHome).toBe(false);
+    expect(n.teamScore).toBe(4);
+  });
+
+  it('gives up when there is no home side and the away side is not us either', () => {
+    const raw = {
+      eventType: 'game',
+      start: '2025-10-06T22:00:00.000Z',
+      game: { homeTeam: null, awayTeam: { schools: [{ id: '888' }] }, homeScore: 1, awayScore: 4 },
+    };
     const n = normalizeEvent(raw, BR_SCHOOL);
     expect(n.isHome).toBeNull();
     expect(n.teamScore).toBeNull();
