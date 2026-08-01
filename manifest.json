@@ -3,7 +3,7 @@
   "manifest_version": "0.3",
   "name": "myersparkathleticzone-mcp",
   "display_name": "Myers Park Athletic Zone",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Schedules, teams, rosters, coaches, news and broadcast links for Myers Park High School athletics",
   "author": {
     "name": "Chris Chall",
