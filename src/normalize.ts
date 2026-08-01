@@ -95,7 +95,13 @@ function opponentName(game: FlightObject | undefined, theirs: FlightObject | und
   const fromTeam = str(((theirs?.schools as FlightObject[] | undefined) ?? [])[0]?.name);
   if (fromTeam) return fromTeam;
   const block = game?.opponent as FlightObject | undefined;
-  return str((block?.opponent as FlightObject | undefined)?.name) ?? str(block?.name);
+  const nested = str((block?.opponent as FlightObject | undefined)?.name);
+  if (nested) return nested;
+  // `block.name` is a POSITIONAL label ("Away"/"Home"), not a school — only the
+  // nested opponent.opponent.name is real. Returning it would print
+  // "Varsity Football vs Away".
+  const label = str(block?.name);
+  return label && !/^(home|away)$/i.test(label.trim()) ? label : null;
 }
 
 /**

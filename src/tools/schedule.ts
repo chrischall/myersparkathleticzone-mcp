@@ -8,7 +8,10 @@ import { currentSchoolYear, normalizeYear } from '../season.js';
 const YearArg = z
   .string()
   .optional()
-  .describe('School year, e.g. "2026-2027". Defaults to the current one. Past seasons are supported.');
+  .describe(
+    'School year, e.g. "2026-2027". Defaults to the current one. Past seasons often work; resolve that year\'s ' +
+    'team id with mpaz_list_teams first and read its `coverage` note.',
+  );
 
 const SportSlugArg = z
   .string()
@@ -100,10 +103,15 @@ export function registerScheduleTools(server: McpServer): void {
         sportSlug,
         teamId,
         count: events.length,
-        played: events.filter((e) => e.result !== null).length,
+        // Deliberately NOT called `played`: these games were all played. This
+        // counts the ones with a complete score, and naming it `played` would
+        // invite exactly the "no score means it didn't happen" inference the
+        // rest of this tool warns against.
+        scored: events.filter((e) => e.result !== null).length,
         note:
-          'A null score means the school never recorded it, not zero; `result` is derived only when both ' +
-          'sides are present.',
+          'A null score means the school never recorded it — not zero, and not that the game was unplayed. ' +
+          '`scored` counts games with BOTH sides recorded, which is the only set `result` is derived for; ' +
+          `the other ${events.filter((e) => e.result === null).length} were played but have no usable score.`,
         events,
       });
     },

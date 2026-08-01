@@ -111,7 +111,9 @@ The all-school schedule embeds **opponent teams alongside ours**, so results mus
 | 7840894 | Girls JV Volleyball |
 | 7840933 | Girls JV Field Hockey |
 
-**Sport pages carry a second, cross-year team selector** whose entries have **no `schools` array** — they are implicitly the school's own, being listed on its own sport page, so the opponent filter must *not* be applied to them. This is the only route to a past season's team ids when the all-school schedule is empty. It is sport-dependent: boys-football exposes historical middle-school teams, girls-volleyball and girls-field-hockey expose none.
+**Sport pages carry a second, cross-year team selector** whose entries have **no `schools` array** — they are implicitly the school's own, being listed on its own sport page, so the opponent filter must *not* be applied to them. This is the only route to a past season's team ids when the all-school schedule is empty.
+
+**The selector is keyed by TEAM, not by sport slug.** Requesting `/sport/girls-volleyball/schedule?team=<a football team id>` returns *football* teams — the slug is decorative here too. So the selector cannot be swept by iterating slugs: reaching a sport's history requires a current team id for that sport, which only the current schedule window provides. Past-season discovery is therefore limited to sports in season at the time of the call, and varies with the calendar. `collectTeams` reports this in `searchedSports` rather than presenting a partial answer as complete. Content is also sport-dependent: boys-football exposes historical middle-school teams, girls-volleyball and girls-field-hockey expose none.
 
 | id | displayName | year |
 |---|---|---|

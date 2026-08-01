@@ -61,7 +61,7 @@ These are properties of the upstream site, not bugs, and the tools say so in the
 
 - **A missing score is unknown, never zero.** Each side's score is stored independently upstream, so half-entered games (`3-null`, `null-4`) are common. `result` is derived only when both sides are present.
 - **Myers Park records few scores.** Every completed game of theirs observed so far has null scores, so a season may return fixtures with no results at all — that is the school's data entry, not a fault.
-- **Past seasons are reachable, but not via the all-school schedule.** Myers Park's `/schedule` is empty for past years even though the per-team pages still serve them, so `mpaz_list_teams` falls back to the sport pages' cross-year team selector to find those ids.
+- **Past-season coverage is partial and calendar-dependent.** Myers Park's `/schedule` is empty for past years even though the per-team pages still serve them, so `mpaz_list_teams` falls back to the sport pages' cross-year team selector. That selector is keyed by *team*, not by sport slug, so it can only be reached through a team that is in season **now** — meaning off-season sports are unreachable for past years, and which ones are reachable changes through the year. The result carries a `coverage` note listing what was searched; an empty list there is not evidence the school fielded no teams.
 - **Most teams publish coaches but not players**, so an empty roster is normal.
 - **The all-school schedule is a window of upcoming events**, not a full season — use `mpaz_get_team_schedule` for that.
 - **Broadcast links are NFHS Network links, not hosted clips** — durations are always `0`.

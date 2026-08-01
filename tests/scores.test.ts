@@ -64,6 +64,50 @@ describe('scores', () => {
     }
   });
 
+  it('inverts home/away correctly on a real away LOSS', () => {
+    // Ardrey Kell 2025-10-21: raw row is home 2 / away 1, and BR are away — so
+    // the school's own line is 1-2 and a loss. Pinning the away path matters:
+    // a missing inversion still looks right on every home fixture.
+    const away = BR.find((e: any) => e.start.startsWith('2025-10-21'));
+    expect(away.game.homeScore).toBe(2);
+    expect(away.game.awayScore).toBe(1);
+    const n = normalizeEvent(away, BR_SCHOOL);
+    expect(n.isHome).toBe(false);
+    expect(n.teamScore).toBe(1);
+    expect(n.opponentScore).toBe(2);
+    expect(n.result).toBe('loss');
+    expect(n.opponent).toBe('Ardrey Kell High School');
+  });
+
+  it('inverts home/away correctly on a real away WIN', () => {
+    const away = BR.find((e: any) => e.start.startsWith('2025-10-28'));
+    const n = normalizeEvent(away, BR_SCHOOL);
+    expect([n.homeScore, n.awayScore]).toEqual([0, 8]);
+    expect(n.isHome).toBe(false);
+    expect(n.result).toBe('win');
+  });
+
+  it('degrades safely when the event carries no homeTeam at all', () => {
+    // Real row (2025-10-06): game.homeTeam is absent, so home/away is unknowable
+    // and must be null rather than defaulting to "away".
+    const raw = BR.find((e: any) => e.game && !e.game.homeTeam);
+    expect(raw, 'fixture should contain a homeTeam-less row').toBeTruthy();
+    const n = normalizeEvent(raw, BR_SCHOOL);
+    expect(n.isHome).toBeNull();
+    expect(n.teamScore).toBeNull();
+    expect(n.result).toBeNull();
+  });
+
+  it('never reports the positional label "Home"/"Away" as an opponent school', () => {
+    // game.opponent.name is a positional label ("Away"); only the nested
+    // opponent.opponent.name is a real school.
+    const n = normalizeEvent(
+      { eventType: 'game', start: '2024-10-17T14:42:00.000Z', game: { homeTeam: { schools: [{ id: MP_SCHOOL }] }, awayTeam: null, opponent: { name: 'Away' } } },
+      MP_SCHOOL,
+    );
+    expect(n.opponent).toBeNull();
+  });
+
   it('still works on schedule-shaped events, which carry no score fields', () => {
     const events = JSON.parse(readFileSync(join(FIX, 'events.json'), 'utf8'));
     const n = normalizeEvent(events[0], MP_SCHOOL);
