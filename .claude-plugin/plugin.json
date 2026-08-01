@@ -1,7 +1,7 @@
 {
   "name": "myersparkathleticzone-mcp",
   "displayName": "Myers Park Athletic Zone",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "MCP server for Myers Park HS athletics — schedules, teams, rosters, coaches, news and broadcast links",
   "author": {
     "name": "Chris Hall",
@@ -10,7 +10,13 @@
   "homepage": "https://github.com/chrischall/myersparkathleticzone-mcp",
   "repository": "https://github.com/chrischall/myersparkathleticzone-mcp",
   "license": "MIT",
-  "keywords": ["athletics", "high-school-sports", "schedule", "roster", "mcp"],
+  "keywords": [
+    "athletics",
+    "high-school-sports",
+    "schedule",
+    "roster",
+    "mcp"
+  ],
   "skills": "./skills/",
   "mcp": "./.mcp.json"
 }
