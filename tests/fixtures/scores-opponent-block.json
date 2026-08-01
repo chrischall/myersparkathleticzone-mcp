@@ -1,0 +1,190 @@
+[
+  {
+    "eventType": "game",
+    "id": "24855916",
+    "start": "2024-10-17T14:42:00.000Z",
+    "isCancelled": false,
+    "teamEvents": [
+      {
+        "id": "47225592",
+        "eventLinks": []
+      }
+    ],
+    "game": {
+      "id": "24855916",
+      "homeTeam": {
+        "id": "5105193",
+        "displayName": "Boys Middle School Football",
+        "photoUrl": null,
+        "schools": [
+          {
+            "id": "10150",
+            "name": "Myers Park High School",
+            "logoUrl": "https://production-gofan-assets.s3.amazonaws.com/uploads/school/logo/NC1598/Myers_Park_High_School.png?",
+            "primaryColor": "#51A020",
+            "mascot": "Mustangs",
+            "url": "https://myersparkathleticzone.com",
+            "vnnMember": true,
+            "unidatAddress1": "2400 Colony Road",
+            "unidatAddress2": null,
+            "unidatCity": "Charlotte",
+            "unidatLatitude": 35.171,
+            "unidatLongitude": -80.834,
+            "unidatMascot": "Mustangs",
+            "unidatName": "Myers Park",
+            "unidatState": "NC",
+            "unidatTimeZone": "America/New_York",
+            "unidatZipCode": "28209",
+            "displayOverrideAddress1": "2400 Colony Rd",
+            "displayOverrideAddress2": null,
+            "displayOverrideCity": null,
+            "displayOverrideMascot": null,
+            "displayOverrideName": "Myers Park High School",
+            "displayOverrideState": null,
+            "displayOverrideZipCode": null
+          }
+        ],
+        "sport": {
+          "id": "41",
+          "name": "Football"
+        },
+        "level": {
+          "id": "6",
+          "name": "8th Grade"
+        },
+        "gender": {
+          "id": "1",
+          "name": "Boys"
+        }
+      },
+      "awayTeam": null,
+      "opponent": {
+        "id": "1139270",
+        "name": "Away",
+        "opponent": {
+          "id": "21785",
+          "name": "Ballantyne Ridge High School",
+          "logoUrl": "https://sportshub2-uploads.vnn-prod.zone/files/sites/5833/2024/01/24115316/Ballantyne_Ridge_HS_Logo-removebg-preview.png",
+          "primaryColor": "#00AED8",
+          "mascot": "Wolves",
+          "url": "https://ballantyneridgeathleticzone.com",
+          "vnnMember": true,
+          "unidatAddress1": "4004 Toringdon Way",
+          "unidatAddress2": null,
+          "unidatCity": "Charlotte",
+          "unidatLatitude": 35.0681,
+          "unidatLongitude": -80.8415,
+          "unidatMascot": "Wolves",
+          "unidatName": "Ballantyne Ridge",
+          "unidatState": "NC",
+          "unidatTimeZone": "America/New_York",
+          "unidatZipCode": "28277",
+          "displayOverrideAddress1": null,
+          "displayOverrideAddress2": null,
+          "displayOverrideCity": null,
+          "displayOverrideMascot": null,
+          "displayOverrideName": "Ballantyne Ridge High School",
+          "displayOverrideState": null,
+          "displayOverrideZipCode": null
+        }
+      },
+      "homeScore": null,
+      "awayScore": null
+    },
+    "startUtc": "2024-10-17T18:42:00Z"
+  },
+  {
+    "eventType": "game",
+    "id": "26693007",
+    "start": "2024-08-29T16:32:00.000Z",
+    "isCancelled": false,
+    "teamEvents": [
+      {
+        "id": "46015804",
+        "eventLinks": []
+      }
+    ],
+    "game": {
+      "id": "26693007",
+      "homeTeam": {
+        "id": "5105193",
+        "displayName": "Boys Middle School Football",
+        "photoUrl": null,
+        "schools": [
+          {
+            "id": "10150",
+            "name": "Myers Park High School",
+            "logoUrl": "https://production-gofan-assets.s3.amazonaws.com/uploads/school/logo/NC1598/Myers_Park_High_School.png?",
+            "primaryColor": "#51A020",
+            "mascot": "Mustangs",
+            "url": "https://myersparkathleticzone.com",
+            "vnnMember": true,
+            "unidatAddress1": "2400 Colony Road",
+            "unidatAddress2": null,
+            "unidatCity": "Charlotte",
+            "unidatLatitude": 35.171,
+            "unidatLongitude": -80.834,
+            "unidatMascot": "Mustangs",
+            "unidatName": "Myers Park",
+            "unidatState": "NC",
+            "unidatTimeZone": "America/New_York",
+            "unidatZipCode": "28209",
+            "displayOverrideAddress1": "2400 Colony Rd",
+            "displayOverrideAddress2": null,
+            "displayOverrideCity": null,
+            "displayOverrideMascot": null,
+            "displayOverrideName": "Myers Park High School",
+            "displayOverrideState": null,
+            "displayOverrideZipCode": null
+          }
+        ],
+        "sport": {
+          "id": "41",
+          "name": "Football"
+        },
+        "level": {
+          "id": "6",
+          "name": "8th Grade"
+        },
+        "gender": {
+          "id": "1",
+          "name": "Boys"
+        }
+      },
+      "awayTeam": null,
+      "opponent": {
+        "id": "1139270",
+        "name": "Away",
+        "opponent": {
+          "id": "21785",
+          "name": "Ballantyne Ridge High School",
+          "logoUrl": "https://sportshub2-uploads.vnn-prod.zone/files/sites/5833/2024/01/24115316/Ballantyne_Ridge_HS_Logo-removebg-preview.png",
+          "primaryColor": "#00AED8",
+          "mascot": "Wolves",
+          "url": "https://ballantyneridgeathleticzone.com",
+          "vnnMember": true,
+          "unidatAddress1": "4004 Toringdon Way",
+          "unidatAddress2": null,
+          "unidatCity": "Charlotte",
+          "unidatLatitude": 35.0681,
+          "unidatLongitude": -80.8415,
+          "unidatMascot": "Wolves",
+          "unidatName": "Ballantyne Ridge",
+          "unidatState": "NC",
+          "unidatTimeZone": "America/New_York",
+          "unidatZipCode": "28277",
+          "displayOverrideAddress1": null,
+          "displayOverrideAddress2": null,
+          "displayOverrideCity": null,
+          "displayOverrideMascot": null,
+          "displayOverrideName": "Ballantyne Ridge High School",
+          "displayOverrideState": null,
+          "displayOverrideZipCode": null
+        }
+      },
+      "homeScore": null,
+      "awayScore": null
+    },
+    "startUtc": "2024-08-29T20:32:00Z"
+  }
+]

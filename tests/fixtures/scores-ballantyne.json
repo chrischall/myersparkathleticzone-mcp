@@ -1,0 +1,932 @@
+[
+  {
+    "eventType": "game",
+    "id": "32021741",
+    "start": "2025-10-06T17:30:00.000Z",
+    "isCancelled": false,
+    "teamEvents": [
+      {
+        "id": "60765119",
+        "eventLinks": [
+          {
+            "id": "8287386",
+            "url": "https://gofan.co/app/events/4893782",
+            "linkType": 1
+          }
+        ]
+      }
+    ],
+    "game": {
+      "id": "32021741",
+      "homeTeam": null,
+      "awayTeam": {
+        "id": "5316036",
+        "displayName": "Boys Varsity Soccer",
+        "photoUrl": null,
+        "schools": [
+          {
+            "id": "21785",
+            "name": "Ballantyne Ridge High School",
+            "logoUrl": "https://sportshub2-uploads.vnn-prod.zone/files/sites/5833/2024/01/24115316/Ballantyne_Ridge_HS_Logo-removebg-preview.png",
+            "primaryColor": "#00AED8",
+            "mascot": "Wolves",
+            "url": "https://ballantyneridgeathleticzone.com",
+            "vnnMember": true,
+            "unidatAddress1": "4004 Toringdon Way",
+            "unidatAddress2": null,
+            "unidatCity": "Charlotte",
+            "unidatLatitude": 35.0681,
+            "unidatLongitude": -80.8415,
+            "unidatMascot": "Wolves",
+            "unidatName": "Ballantyne Ridge",
+            "unidatState": "NC",
+            "unidatTimeZone": "America/New_York",
+            "unidatZipCode": "28277",
+            "displayOverrideAddress1": null,
+            "displayOverrideAddress2": null,
+            "displayOverrideCity": null,
+            "displayOverrideMascot": null,
+            "displayOverrideName": "Ballantyne Ridge High School",
+            "displayOverrideState": null,
+            "displayOverrideZipCode": null
+          }
+        ],
+        "sport": {
+          "id": "57",
+          "name": "Soccer"
+        },
+        "level": {
+          "id": "1",
+          "name": "Varsity"
+        },
+        "gender": {
+          "id": "1",
+          "name": "Boys"
+        }
+      },
+      "opponent": {
+        "id": "1672573",
+        "name": "Palisades High School",
+        "opponent": {
+          "id": "20545",
+          "name": "Palisades High School",
+          "logoUrl": "https://production-gofan-assets.s3.amazonaws.com/uploads/school/logo/NC87398/palisades.png?cacheBlock=true",
+          "primaryColor": "#009592",
+          "mascot": "Pumas",
+          "url": "https://palisadesathleticzone.com",
+          "vnnMember": true,
+          "unidatAddress1": "15221 York Road",
+          "unidatAddress2": null,
+          "unidatCity": "Charlotte",
+          "unidatLatitude": 35.0937,
+          "unidatLongitude": -81.0242,
+          "unidatMascot": "Pumas",
+          "unidatName": "Palisades",
+          "unidatState": "NC",
+          "unidatTimeZone": "America/New_York",
+          "unidatZipCode": "28278",
+          "displayOverrideAddress1": "15221 York Rd",
+          "displayOverrideAddress2": null,
+          "displayOverrideCity": null,
+          "displayOverrideMascot": null,
+          "displayOverrideName": "Palisades High School",
+          "displayOverrideState": null,
+          "displayOverrideZipCode": null
+        }
+      },
+      "homeScore": null,
+      "awayScore": null
+    },
+    "startUtc": "2025-10-06T21:30:00Z"
+  },
+  {
+    "eventType": "game",
+    "id": "27343663",
+    "start": "2025-10-14T19:00:00.000Z",
+    "isCancelled": false,
+    "teamEvents": [
+      {
+        "id": "47711922",
+        "eventLinks": [
+          {
+            "id": "5720446",
+            "url": "https://www.nfhsnetwork.com/events/ballantyne-ridge-high-school-charlotte-nc/gamafda342ded",
+            "linkType": 2
+          },
+          {
+            "id": "5720449",
+            "url": "https://www.nfhsnetwork.com/events/ballantyne-ridge-high-school-charlotte-nc/gamafda342ded",
+            "linkType": 3
+          },
+          {
+            "id": "5720451",
+            "url": "https://gofan.co/app/events/3605336",
+            "linkType": 1
+          }
+        ]
+      },
+      {
+        "id": "47711923",
+        "eventLinks": [
+          {
+            "id": "5720452",
+            "url": "https://www.nfhsnetwork.com/events/ballantyne-ridge-high-school-charlotte-nc/gamafda342ded",
+            "linkType": 2
+          },
+          {
+            "id": "5720454",
+            "url": "https://www.nfhsnetwork.com/events/ballantyne-ridge-high-school-charlotte-nc/gamafda342ded",
+            "linkType": 3
+          },
+          {
+            "id": "5720458",
+            "url": "https://gofan.co/app/events/3605336",
+            "linkType": 1
+          }
+        ]
+      }
+    ],
+    "game": {
+      "id": "27343663",
+      "homeTeam": {
+        "id": "5316036",
+        "displayName": "Boys Varsity Soccer",
+        "photoUrl": null,
+        "schools": [
+          {
+            "id": "21785",
+            "name": "Ballantyne Ridge High School",
+            "logoUrl": "https://sportshub2-uploads.vnn-prod.zone/files/sites/5833/2024/01/24115316/Ballantyne_Ridge_HS_Logo-removebg-preview.png",
+            "primaryColor": "#00AED8",
+            "mascot": "Wolves",
+            "url": "https://ballantyneridgeathleticzone.com",
+            "vnnMember": true,
+            "unidatAddress1": "4004 Toringdon Way",
+            "unidatAddress2": null,
+            "unidatCity": "Charlotte",
+            "unidatLatitude": 35.0681,
+            "unidatLongitude": -80.8415,
+            "unidatMascot": "Wolves",
+            "unidatName": "Ballantyne Ridge",
+            "unidatState": "NC",
+            "unidatTimeZone": "America/New_York",
+            "unidatZipCode": "28277",
+            "displayOverrideAddress1": null,
+            "displayOverrideAddress2": null,
+            "displayOverrideCity": null,
+            "displayOverrideMascot": null,
+            "displayOverrideName": "Ballantyne Ridge High School",
+            "displayOverrideState": null,
+            "displayOverrideZipCode": null
+          }
+        ],
+        "sport": {
+          "id": "57",
+          "name": "Soccer"
+        },
+        "level": {
+          "id": "1",
+          "name": "Varsity"
+        },
+        "gender": {
+          "id": "1",
+          "name": "Boys"
+        }
+      },
+      "awayTeam": {
+        "id": "5233786",
+        "displayName": "Boys Varsity Soccer",
+        "photoUrl": null,
+        "schools": [
+          {
+            "id": "10309",
+            "name": "South Iredell High School",
+            "logoUrl": "https://sportshub2-uploads.vnn-prod.zone/files/sites/5698/2023/06/26152709/South_Iredell__1___1_-removebg-preview.png",
+            "primaryColor": "#182957",
+            "mascot": "Vikings",
+            "url": "https://southiredellathleticzone.com",
+            "vnnMember": true,
+            "unidatAddress1": "299 Old Mountain Road",
+            "unidatAddress2": null,
+            "unidatCity": "Statesville",
+            "unidatLatitude": 35.7147,
+            "unidatLongitude": -80.9149,
+            "unidatMascot": "Vikings",
+            "unidatName": "South Iredell",
+            "unidatState": "NC",
+            "unidatTimeZone": "US/Eastern",
+            "unidatZipCode": "28677",
+            "displayOverrideAddress1": "299 Old Mountain Rd",
+            "displayOverrideAddress2": null,
+            "displayOverrideCity": null,
+            "displayOverrideMascot": null,
+            "displayOverrideName": "South Iredell High School",
+            "displayOverrideState": null,
+            "displayOverrideZipCode": null
+          }
+        ],
+        "sport": {
+          "id": "57",
+          "name": "Soccer"
+        },
+        "level": {
+          "id": "1",
+          "name": "Varsity"
+        },
+        "gender": {
+          "id": "1",
+          "name": "Boys"
+        }
+      },
+      "opponent": null,
+      "homeScore": 3,
+      "awayScore": null
+    },
+    "startUtc": "2025-10-14T23:00:00Z"
+  },
+  {
+    "eventType": "game",
+    "id": "27343632",
+    "start": "2025-10-16T19:00:00.000Z",
+    "isCancelled": false,
+    "teamEvents": [
+      {
+        "id": "47711852",
+        "eventLinks": [
+          {
+            "id": "5720439",
+            "url": "https://www.nfhsnetwork.com/events/ballantyne-ridge-high-school-charlotte-nc/gama9b830db2e",
+            "linkType": 2
+          },
+          {
+            "id": "5720440",
+            "url": "https://www.nfhsnetwork.com/events/ballantyne-ridge-high-school-charlotte-nc/gama9b830db2e",
+            "linkType": 3
+          },
+          {
+            "id": "5720441",
+            "url": "https://gofan.co/app/events/3605335",
+            "linkType": 1
+          }
+        ]
+      },
+      {
+        "id": "47711853",
+        "eventLinks": [
+          {
+            "id": "5720442",
+            "url": "https://www.nfhsnetwork.com/events/ballantyne-ridge-high-school-charlotte-nc/gama9b830db2e",
+            "linkType": 2
+          },
+          {
+            "id": "5720445",
+            "url": "https://www.nfhsnetwork.com/events/ballantyne-ridge-high-school-charlotte-nc/gama9b830db2e",
+            "linkType": 3
+          },
+          {
+            "id": "5720447",
+            "url": "https://gofan.co/app/events/3605335",
+            "linkType": 1
+          }
+        ]
+      }
+    ],
+    "game": {
+      "id": "27343632",
+      "homeTeam": {
+        "id": "5316036",
+        "displayName": "Boys Varsity Soccer",
+        "photoUrl": null,
+        "schools": [
+          {
+            "id": "21785",
+            "name": "Ballantyne Ridge High School",
+            "logoUrl": "https://sportshub2-uploads.vnn-prod.zone/files/sites/5833/2024/01/24115316/Ballantyne_Ridge_HS_Logo-removebg-preview.png",
+            "primaryColor": "#00AED8",
+            "mascot": "Wolves",
+            "url": "https://ballantyneridgeathleticzone.com",
+            "vnnMember": true,
+            "unidatAddress1": "4004 Toringdon Way",
+            "unidatAddress2": null,
+            "unidatCity": "Charlotte",
+            "unidatLatitude": 35.0681,
+            "unidatLongitude": -80.8415,
+            "unidatMascot": "Wolves",
+            "unidatName": "Ballantyne Ridge",
+            "unidatState": "NC",
+            "unidatTimeZone": "America/New_York",
+            "unidatZipCode": "28277",
+            "displayOverrideAddress1": null,
+            "displayOverrideAddress2": null,
+            "displayOverrideCity": null,
+            "displayOverrideMascot": null,
+            "displayOverrideName": "Ballantyne Ridge High School",
+            "displayOverrideState": null,
+            "displayOverrideZipCode": null
+          }
+        ],
+        "sport": {
+          "id": "57",
+          "name": "Soccer"
+        },
+        "level": {
+          "id": "1",
+          "name": "Varsity"
+        },
+        "gender": {
+          "id": "1",
+          "name": "Boys"
+        }
+      },
+      "awayTeam": {
+        "id": "5307959",
+        "displayName": "Boys Varsity Soccer",
+        "photoUrl": null,
+        "schools": [
+          {
+            "id": "20545",
+            "name": "Palisades High School",
+            "logoUrl": "https://production-gofan-assets.s3.amazonaws.com/uploads/school/logo/NC87398/palisades.png?cacheBlock=true",
+            "primaryColor": "#009592",
+            "mascot": "Pumas",
+            "url": "https://palisadesathleticzone.com",
+            "vnnMember": true,
+            "unidatAddress1": "15221 York Road",
+            "unidatAddress2": null,
+            "unidatCity": "Charlotte",
+            "unidatLatitude": 35.0937,
+            "unidatLongitude": -81.0242,
+            "unidatMascot": "Pumas",
+            "unidatName": "Palisades",
+            "unidatState": "NC",
+            "unidatTimeZone": "America/New_York",
+            "unidatZipCode": "28278",
+            "displayOverrideAddress1": "15221 York Rd",
+            "displayOverrideAddress2": null,
+            "displayOverrideCity": null,
+            "displayOverrideMascot": null,
+            "displayOverrideName": "Palisades High School",
+            "displayOverrideState": null,
+            "displayOverrideZipCode": null
+          }
+        ],
+        "sport": {
+          "id": "57",
+          "name": "Soccer"
+        },
+        "level": {
+          "id": "1",
+          "name": "Varsity"
+        },
+        "gender": {
+          "id": "1",
+          "name": "Boys"
+        }
+      },
+      "opponent": null,
+      "homeScore": 5,
+      "awayScore": 3
+    },
+    "startUtc": "2025-10-16T23:00:00Z"
+  },
+  {
+    "eventType": "game",
+    "id": "31841078",
+    "start": "2025-10-21T19:00:00.000Z",
+    "isCancelled": false,
+    "teamEvents": [
+      {
+        "id": "60445005",
+        "eventLinks": [
+          {
+            "id": "8206980",
+            "url": "http://www.nfhsnetwork.com/events/ardrey-kell-high-school-charlotte-nc/gam9ff623cd17",
+            "linkType": 2
+          },
+          {
+            "id": "8206984",
+            "url": "https://gofan.co/app/events/3793837",
+            "linkType": 1
+          }
+        ]
+      },
+      {
+        "id": "60445006",
+        "eventLinks": [
+          {
+            "id": "8206986",
+            "url": "http://www.nfhsnetwork.com/events/ardrey-kell-high-school-charlotte-nc/gam9ff623cd17",
+            "linkType": 2
+          },
+          {
+            "id": "8206989",
+            "url": "https://gofan.co/app/events/3793837",
+            "linkType": 1
+          }
+        ]
+      }
+    ],
+    "game": {
+      "id": "31841078",
+      "homeTeam": {
+        "id": "5233365",
+        "displayName": "Boys Varsity Soccer",
+        "photoUrl": null,
+        "schools": [
+          {
+            "id": "10174",
+            "name": "Ardrey Kell High School",
+            "logoUrl": "https://sportshub2-uploads.vnn-prod.zone/files/sites/3460/2022/06/09180838/Ardrey.png",
+            "primaryColor": "#613395",
+            "mascot": "Knights",
+            "url": "https://ardreykellathleticzone.com",
+            "vnnMember": true,
+            "unidatAddress1": "10220 Ardrey Kell Road",
+            "unidatAddress2": null,
+            "unidatCity": "Charlotte",
+            "unidatLatitude": 35.0302,
+            "unidatLongitude": -80.826,
+            "unidatMascot": "Knights",
+            "unidatName": "Ardrey Kell",
+            "unidatState": "NC",
+            "unidatTimeZone": "America/New_York",
+            "unidatZipCode": "28277",
+            "displayOverrideAddress1": "10220 Ardrey Kell Rd",
+            "displayOverrideAddress2": null,
+            "displayOverrideCity": null,
+            "displayOverrideMascot": null,
+            "displayOverrideName": "Ardrey Kell High School",
+            "displayOverrideState": null,
+            "displayOverrideZipCode": null
+          }
+        ],
+        "sport": {
+          "id": "57",
+          "name": "Soccer"
+        },
+        "level": {
+          "id": "1",
+          "name": "Varsity"
+        },
+        "gender": {
+          "id": "1",
+          "name": "Boys"
+        }
+      },
+      "awayTeam": {
+        "id": "5316036",
+        "displayName": "Boys Varsity Soccer",
+        "photoUrl": null,
+        "schools": [
+          {
+            "id": "21785",
+            "name": "Ballantyne Ridge High School",
+            "logoUrl": "https://sportshub2-uploads.vnn-prod.zone/files/sites/5833/2024/01/24115316/Ballantyne_Ridge_HS_Logo-removebg-preview.png",
+            "primaryColor": "#00AED8",
+            "mascot": "Wolves",
+            "url": "https://ballantyneridgeathleticzone.com",
+            "vnnMember": true,
+            "unidatAddress1": "4004 Toringdon Way",
+            "unidatAddress2": null,
+            "unidatCity": "Charlotte",
+            "unidatLatitude": 35.0681,
+            "unidatLongitude": -80.8415,
+            "unidatMascot": "Wolves",
+            "unidatName": "Ballantyne Ridge",
+            "unidatState": "NC",
+            "unidatTimeZone": "America/New_York",
+            "unidatZipCode": "28277",
+            "displayOverrideAddress1": null,
+            "displayOverrideAddress2": null,
+            "displayOverrideCity": null,
+            "displayOverrideMascot": null,
+            "displayOverrideName": "Ballantyne Ridge High School",
+            "displayOverrideState": null,
+            "displayOverrideZipCode": null
+          }
+        ],
+        "sport": {
+          "id": "57",
+          "name": "Soccer"
+        },
+        "level": {
+          "id": "1",
+          "name": "Varsity"
+        },
+        "gender": {
+          "id": "1",
+          "name": "Boys"
+        }
+      },
+      "opponent": null,
+      "homeScore": 2,
+      "awayScore": 1
+    },
+    "startUtc": "2025-10-21T23:00:00Z"
+  },
+  {
+    "eventType": "game",
+    "id": "28092273",
+    "start": "2025-10-23T19:00:00.000Z",
+    "isCancelled": false,
+    "teamEvents": [
+      {
+        "id": "50491006",
+        "eventLinks": [
+          {
+            "id": "6871150",
+            "url": "https://gofan.co/app/events/3950966",
+            "linkType": 1
+          }
+        ]
+      },
+      {
+        "id": "50491007",
+        "eventLinks": [
+          {
+            "id": "6871153",
+            "url": "https://gofan.co/app/events/3950966",
+            "linkType": 1
+          }
+        ]
+      }
+    ],
+    "game": {
+      "id": "28092273",
+      "homeTeam": {
+        "id": "5233276",
+        "displayName": "Boys Varsity Soccer",
+        "photoUrl": null,
+        "schools": [
+          {
+            "id": "10171",
+            "name": "Providence High School",
+            "logoUrl": "https://logos.vnn-prod.zone/10171.png",
+            "primaryColor": "#cdb963",
+            "mascot": "Panthers",
+            "url": "https://providenceathleticzone.com",
+            "vnnMember": true,
+            "unidatAddress1": "1800 Pineville-Matthews Road",
+            "unidatAddress2": null,
+            "unidatCity": "Charlotte",
+            "unidatLatitude": 35.1122,
+            "unidatLongitude": -80.7648,
+            "unidatMascot": "Panthers",
+            "unidatName": "Providence",
+            "unidatState": "NC",
+            "unidatTimeZone": "America/New_York",
+            "unidatZipCode": "28270",
+            "displayOverrideAddress1": "1800 Pineville-Matthews Rd",
+            "displayOverrideAddress2": null,
+            "displayOverrideCity": null,
+            "displayOverrideMascot": null,
+            "displayOverrideName": "Providence High School",
+            "displayOverrideState": null,
+            "displayOverrideZipCode": null
+          }
+        ],
+        "sport": {
+          "id": "57",
+          "name": "Soccer"
+        },
+        "level": {
+          "id": "1",
+          "name": "Varsity"
+        },
+        "gender": {
+          "id": "1",
+          "name": "Boys"
+        }
+      },
+      "awayTeam": {
+        "id": "5316036",
+        "displayName": "Boys Varsity Soccer",
+        "photoUrl": null,
+        "schools": [
+          {
+            "id": "21785",
+            "name": "Ballantyne Ridge High School",
+            "logoUrl": "https://sportshub2-uploads.vnn-prod.zone/files/sites/5833/2024/01/24115316/Ballantyne_Ridge_HS_Logo-removebg-preview.png",
+            "primaryColor": "#00AED8",
+            "mascot": "Wolves",
+            "url": "https://ballantyneridgeathleticzone.com",
+            "vnnMember": true,
+            "unidatAddress1": "4004 Toringdon Way",
+            "unidatAddress2": null,
+            "unidatCity": "Charlotte",
+            "unidatLatitude": 35.0681,
+            "unidatLongitude": -80.8415,
+            "unidatMascot": "Wolves",
+            "unidatName": "Ballantyne Ridge",
+            "unidatState": "NC",
+            "unidatTimeZone": "America/New_York",
+            "unidatZipCode": "28277",
+            "displayOverrideAddress1": null,
+            "displayOverrideAddress2": null,
+            "displayOverrideCity": null,
+            "displayOverrideMascot": null,
+            "displayOverrideName": "Ballantyne Ridge High School",
+            "displayOverrideState": null,
+            "displayOverrideZipCode": null
+          }
+        ],
+        "sport": {
+          "id": "57",
+          "name": "Soccer"
+        },
+        "level": {
+          "id": "1",
+          "name": "Varsity"
+        },
+        "gender": {
+          "id": "1",
+          "name": "Boys"
+        }
+      },
+      "opponent": null,
+      "homeScore": null,
+      "awayScore": null
+    },
+    "startUtc": "2025-10-23T23:00:00Z"
+  },
+  {
+    "eventType": "game",
+    "id": "27133852",
+    "start": "2025-10-28T18:00:00.000Z",
+    "isCancelled": false,
+    "teamEvents": [
+      {
+        "id": "46971373",
+        "eventLinks": [
+          {
+            "id": "6121529",
+            "url": "http://www.nfhsnetwork.com/events/rocky-river-high-school-charlotte-nc/gam6dd6947e65",
+            "linkType": 2
+          },
+          {
+            "id": "6121530",
+            "url": "http://www.nfhsnetwork.com/events/rocky-river-high-school-charlotte-nc/gam6dd6947e65",
+            "linkType": 3
+          },
+          {
+            "id": "7079637",
+            "url": "https://gofan.co/app/events/4014048",
+            "linkType": 1
+          }
+        ]
+      },
+      {
+        "id": "46971374",
+        "eventLinks": [
+          {
+            "id": "6121531",
+            "url": "http://www.nfhsnetwork.com/events/rocky-river-high-school-charlotte-nc/gam6dd6947e65",
+            "linkType": 2
+          },
+          {
+            "id": "6121532",
+            "url": "http://www.nfhsnetwork.com/events/rocky-river-high-school-charlotte-nc/gam6dd6947e65",
+            "linkType": 3
+          },
+          {
+            "id": "7079639",
+            "url": "https://gofan.co/app/events/4014048",
+            "linkType": 1
+          }
+        ]
+      }
+    ],
+    "game": {
+      "id": "27133852",
+      "homeTeam": {
+        "id": "5233127",
+        "displayName": "Boys Varsity Soccer",
+        "photoUrl": null,
+        "schools": [
+          {
+            "id": "10163",
+            "name": "Rocky River High School",
+            "logoUrl": "https://sportshub2-uploads.vnn-prod.zone/files/sites/3471/2022/06/19170026/Rocky-River-Logo.png",
+            "primaryColor": "#D84E28",
+            "mascot": "Ravens",
+            "url": "https://rockyriverathleticzone.com",
+            "vnnMember": true,
+            "unidatAddress1": "10505 Clear Creek Commerce Drive",
+            "unidatAddress2": null,
+            "unidatCity": "Mint Hill",
+            "unidatLatitude": 35.2149,
+            "unidatLongitude": -80.6414,
+            "unidatMascot": "Ravens",
+            "unidatName": "Rocky River",
+            "unidatState": "NC",
+            "unidatTimeZone": "America/New_York",
+            "unidatZipCode": "28227",
+            "displayOverrideAddress1": "10505 Clear Creek Commerce Dr",
+            "displayOverrideAddress2": null,
+            "displayOverrideCity": null,
+            "displayOverrideMascot": null,
+            "displayOverrideName": "Rocky River High School",
+            "displayOverrideState": null,
+            "displayOverrideZipCode": null
+          }
+        ],
+        "sport": {
+          "id": "57",
+          "name": "Soccer"
+        },
+        "level": {
+          "id": "1",
+          "name": "Varsity"
+        },
+        "gender": {
+          "id": "1",
+          "name": "Boys"
+        }
+      },
+      "awayTeam": {
+        "id": "5316036",
+        "displayName": "Boys Varsity Soccer",
+        "photoUrl": null,
+        "schools": [
+          {
+            "id": "21785",
+            "name": "Ballantyne Ridge High School",
+            "logoUrl": "https://sportshub2-uploads.vnn-prod.zone/files/sites/5833/2024/01/24115316/Ballantyne_Ridge_HS_Logo-removebg-preview.png",
+            "primaryColor": "#00AED8",
+            "mascot": "Wolves",
+            "url": "https://ballantyneridgeathleticzone.com",
+            "vnnMember": true,
+            "unidatAddress1": "4004 Toringdon Way",
+            "unidatAddress2": null,
+            "unidatCity": "Charlotte",
+            "unidatLatitude": 35.0681,
+            "unidatLongitude": -80.8415,
+            "unidatMascot": "Wolves",
+            "unidatName": "Ballantyne Ridge",
+            "unidatState": "NC",
+            "unidatTimeZone": "America/New_York",
+            "unidatZipCode": "28277",
+            "displayOverrideAddress1": null,
+            "displayOverrideAddress2": null,
+            "displayOverrideCity": null,
+            "displayOverrideMascot": null,
+            "displayOverrideName": "Ballantyne Ridge High School",
+            "displayOverrideState": null,
+            "displayOverrideZipCode": null
+          }
+        ],
+        "sport": {
+          "id": "57",
+          "name": "Soccer"
+        },
+        "level": {
+          "id": "1",
+          "name": "Varsity"
+        },
+        "gender": {
+          "id": "1",
+          "name": "Boys"
+        }
+      },
+      "opponent": null,
+      "homeScore": 0,
+      "awayScore": 8
+    },
+    "startUtc": "2025-10-28T22:00:00Z"
+  },
+  {
+    "eventType": "game",
+    "id": "32471485",
+    "start": "2025-11-06T18:00:00.000Z",
+    "isCancelled": false,
+    "teamEvents": [
+      {
+        "id": "63183686",
+        "eventLinks": [
+          {
+            "id": "8974095",
+            "url": "https://www.nfhsnetwork.com/events/grimsley-high-school-greensboro-nc/gam76a7e0c487",
+            "linkType": 2
+          },
+          {
+            "id": "8974097",
+            "url": "https://gofan.co/app/events/5295606",
+            "linkType": 1
+          }
+        ]
+      },
+      {
+        "id": "63203751",
+        "eventLinks": [
+          {
+            "id": "8985727",
+            "url": "https://www.nfhsnetwork.com/events/grimsley-high-school-greensboro-nc/gam76a7e0c487",
+            "linkType": 2
+          },
+          {
+            "id": "8985729",
+            "url": "https://gofan.co/app/events/5295606",
+            "linkType": 1
+          }
+        ]
+      }
+    ],
+    "game": {
+      "id": "32471485",
+      "homeTeam": {
+        "id": "5229781",
+        "displayName": "Boys Varsity Soccer",
+        "photoUrl": null,
+        "schools": [
+          {
+            "id": "9882",
+            "name": "Grimsley High School",
+            "logoUrl": "https://logos.vnn-prod.zone/9882.png",
+            "primaryColor": "#081C37",
+            "mascot": "Whirlies",
+            "url": "https://grimsleyathleticzone.com",
+            "vnnMember": true,
+            "unidatAddress1": "801 N. Josephine Boyd Street",
+            "unidatAddress2": null,
+            "unidatCity": "Greensboro",
+            "unidatLatitude": 36.0851,
+            "unidatLongitude": -79.8167,
+            "unidatMascot": "Whirlies",
+            "unidatName": "Grimsley",
+            "unidatState": "NC",
+            "unidatTimeZone": "America/New_York",
+            "unidatZipCode": "27408",
+            "displayOverrideAddress1": "801 North Josephine Boyd St",
+            "displayOverrideAddress2": null,
+            "displayOverrideCity": null,
+            "displayOverrideMascot": null,
+            "displayOverrideName": "Grimsley High School",
+            "displayOverrideState": null,
+            "displayOverrideZipCode": null
+          }
+        ],
+        "sport": {
+          "id": "57",
+          "name": "Soccer"
+        },
+        "level": {
+          "id": "1",
+          "name": "Varsity"
+        },
+        "gender": {
+          "id": "1",
+          "name": "Boys"
+        }
+      },
+      "awayTeam": {
+        "id": "5316036",
+        "displayName": "Boys Varsity Soccer",
+        "photoUrl": null,
+        "schools": [
+          {
+            "id": "21785",
+            "name": "Ballantyne Ridge High School",
+            "logoUrl": "https://sportshub2-uploads.vnn-prod.zone/files/sites/5833/2024/01/24115316/Ballantyne_Ridge_HS_Logo-removebg-preview.png",
+            "primaryColor": "#00AED8",
+            "mascot": "Wolves",
+            "url": "https://ballantyneridgeathleticzone.com",
+            "vnnMember": true,
+            "unidatAddress1": "4004 Toringdon Way",
+            "unidatAddress2": null,
+            "unidatCity": "Charlotte",
+            "unidatLatitude": 35.0681,
+            "unidatLongitude": -80.8415,
+            "unidatMascot": "Wolves",
+            "unidatName": "Ballantyne Ridge",
+            "unidatState": "NC",
+            "unidatTimeZone": "America/New_York",
+            "unidatZipCode": "28277",
+            "displayOverrideAddress1": null,
+            "displayOverrideAddress2": null,
+            "displayOverrideCity": null,
+            "displayOverrideMascot": null,
+            "displayOverrideName": "Ballantyne Ridge High School",
+            "displayOverrideState": null,
+            "displayOverrideZipCode": null
+          }
+        ],
+        "sport": {
+          "id": "57",
+          "name": "Soccer"
+        },
+        "level": {
+          "id": "1",
+          "name": "Varsity"
+        },
+        "gender": {
+          "id": "1",
+          "name": "Boys"
+        }
+      },
+      "opponent": null,
+      "homeScore": 0,
+      "awayScore": 0
+    },
+    "startUtc": "2025-11-06T23:00:00Z"
+  }
+]

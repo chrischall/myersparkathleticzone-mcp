@@ -8,7 +8,10 @@ import { currentSchoolYear, normalizeYear } from '../season.js';
 const YearArg = z
   .string()
   .optional()
-  .describe('School year, e.g. "2026-2027". Defaults to the current one. Only the current year holds data.');
+  .describe(
+    'School year, e.g. "2026-2027". Defaults to the current one. Past seasons often work; resolve that year\'s ' +
+    'team id with mpaz_list_teams first and read its `coverage` note.',
+  );
 
 const SportSlugArg = z
   .string()
@@ -79,9 +82,10 @@ export function registerScheduleTools(server: McpServer): void {
     {
       title: 'Get one team\'s results',
       description:
-        'Completed games with results for a single team. UNVERIFIED: this school had no completed games when the ' +
-        'server was built, so no scores payload has ever been observed and the score fields are unknown — the tool ' +
-        'returns whatever events the page yields, with a note. Prefer mpaz_get_team_schedule for fixtures. Read-only.',
+        'Completed games with results for a single team: `homeScore`/`awayScore` plus `teamScore`/`opponentScore`/' +
+        '`result` from this school\'s point of view. Each side\'s score is stored independently upstream, so a ' +
+        'half-entered game yields a null score and `result: null` — a missing score is unknown, never zero. ' +
+        'Prefer mpaz_get_team_schedule for upcoming fixtures. Read-only.',
       annotations: toolAnnotations({
         title: 'Get one team\'s results',
         readOnly: true,
@@ -99,9 +103,15 @@ export function registerScheduleTools(server: McpServer): void {
         sportSlug,
         teamId,
         count: events.length,
+        // Deliberately NOT called `played`: these games were all played. This
+        // counts the ones with a complete score, and naming it `played` would
+        // invite exactly the "no score means it didn't happen" inference the
+        // rest of this tool warns against.
+        scored: events.filter((e) => e.result !== null).length,
         note:
-          'Score fields are unverified — none were observable when this server was built. ' +
-          'An empty result most likely means no games have been played yet.',
+          'A null score means the school never recorded it — not zero, and not that the game was unplayed. ' +
+          '`scored` counts games with BOTH sides recorded, which is the only set `result` is derived for; ' +
+          `the other ${events.filter((e) => e.result === null).length} were played but have no usable score.`,
         events,
       });
     },
