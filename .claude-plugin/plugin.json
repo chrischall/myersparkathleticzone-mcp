@@ -1,7 +1,7 @@
 {
   "name": "myersparkathleticzone-mcp",
   "displayName": "Myers Park Athletic Zone",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "MCP server for Myers Park HS athletics — schedules, teams, rosters, coaches, news and broadcast links",
   "author": {
     "name": "Chris Hall",

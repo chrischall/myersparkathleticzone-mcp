@@ -7,7 +7,7 @@
   },
   "metadata": {
     "description": "MCP server for Myers Park HS athletics — reads the public Athletic Zone site's server-rendered pages",
-    "version": "0.1.0"
+    "version": "0.2.0"
   },
   "plugins": [
     {
@@ -15,7 +15,7 @@
       "displayName": "Myers Park Athletic Zone",
       "source": "./",
       "description": "MCP server for Myers Park HS athletics — schedules, teams, rosters, coaches, news and broadcast links. Reads the public site's server-rendered pages; no account or credentials required.",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "author": {
         "name": "Chris Hall"
       },
