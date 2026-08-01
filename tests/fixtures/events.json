@@ -1,0 +1,457 @@
+[
+  {
+    "id": "38076875",
+    "globalEventId": "d74a8514-d62e-4357-9b60-0a07b06aa76c",
+    "eventType": "game",
+    "start": "2026-08-14T18:30:00.000Z",
+    "isCancelled": false,
+    "isPostponed": false,
+    "isScrimmage": false,
+    "isTba": false,
+    "teamEvents": [
+      {
+        "id": "77493385",
+        "team": {
+          "id": "7840877",
+          "schools": [
+            {
+              "id": "10150",
+              "name": "Myers Park High School",
+              "valid": true,
+              "vnnMember": true,
+              "logoUrl": "https://production-gofan-assets.s3.amazonaws.com/uploads/school/logo/NC1598/Myers_Park_High_School.png?"
+            }
+          ]
+        }
+      },
+      {
+        "id": "77771558",
+        "team": {
+          "id": "8171843",
+          "schools": [
+            {
+              "id": "10066",
+              "name": "Cannon School",
+              "valid": true,
+              "vnnMember": false,
+              "logoUrl": "https://logos.vnn-prod.zone/10066.png"
+            }
+          ]
+        }
+      }
+    ],
+    "location": {
+      "name": "Julius L. Chambers High School",
+      "address1": "",
+      "city": "",
+      "state": {
+        "abbreviation": "NC"
+      },
+      "timezone": null,
+      "school": {
+        "id": "10150",
+        "logoUrl": "https://production-gofan-assets.s3.amazonaws.com/uploads/school/logo/NC1598/Myers_Park_High_School.png?",
+        "name": "Myers Park High School",
+        "primaryColor": "#51A020"
+      }
+    },
+    "game": {
+      "id": "38076875",
+      "homeTeam": {
+        "id": "7840877",
+        "displayName": "Varsity Football",
+        "photoUrl": null,
+        "schools": [
+          {
+            "id": "10150",
+            "name": "Myers Park High School",
+            "logoUrl": "https://production-gofan-assets.s3.amazonaws.com/uploads/school/logo/NC1598/Myers_Park_High_School.png?",
+            "primaryColor": "#51A020",
+            "mascot": "Mustangs",
+            "url": "https://myersparkathleticzone.com",
+            "vnnMember": true,
+            "unidatAddress1": "2400 Colony Road",
+            "unidatAddress2": null,
+            "unidatCity": "Charlotte",
+            "unidatLatitude": 35.171,
+            "unidatLongitude": -80.834,
+            "unidatMascot": "Mustangs",
+            "unidatName": "Myers Park",
+            "unidatState": "NC",
+            "unidatTimeZone": "America/New_York",
+            "unidatZipCode": "28209",
+            "displayOverrideAddress1": "2400 Colony Rd",
+            "displayOverrideAddress2": null,
+            "displayOverrideCity": null,
+            "displayOverrideMascot": null,
+            "displayOverrideName": "Myers Park High School",
+            "displayOverrideState": null,
+            "displayOverrideZipCode": null
+          }
+        ],
+        "sport": {
+          "id": "41",
+          "name": "Football"
+        },
+        "level": {
+          "id": "1",
+          "name": "Varsity"
+        },
+        "gender": {
+          "id": "1",
+          "name": "Boys"
+        }
+      },
+      "awayTeam": {
+        "id": "8171843",
+        "displayName": "Boys Varsity Football",
+        "photoUrl": null,
+        "schools": [
+          {
+            "id": "10066",
+            "name": "Cannon School",
+            "logoUrl": "https://logos.vnn-prod.zone/10066.png",
+            "primaryColor": null,
+            "mascot": "",
+            "url": null,
+            "vnnMember": false,
+            "unidatAddress1": "5801 Poplar Tent Rd",
+            "unidatAddress2": null,
+            "unidatCity": "Concord",
+            "unidatLatitude": 35.4047,
+            "unidatLongitude": -80.6715,
+            "unidatMascot": "Cougars",
+            "unidatName": "Cannon",
+            "unidatState": "NC",
+            "unidatTimeZone": "America/New_York",
+            "unidatZipCode": "28027",
+            "displayOverrideAddress1": null,
+            "displayOverrideAddress2": null,
+            "displayOverrideCity": null,
+            "displayOverrideMascot": "",
+            "displayOverrideName": "Cannon School",
+            "displayOverrideState": null,
+            "displayOverrideZipCode": null
+          }
+        ],
+        "sport": {
+          "id": "41",
+          "name": "Football"
+        },
+        "level": {
+          "id": "1",
+          "name": "Varsity"
+        },
+        "gender": {
+          "id": "1",
+          "name": "Boys"
+        }
+      },
+      "opponent": null
+    },
+    "meet": null,
+    "activity": null
+  },
+  {
+    "id": "38213919",
+    "globalEventId": null,
+    "eventType": "game",
+    "start": "2026-08-18T17:00:00.000Z",
+    "isCancelled": false,
+    "isPostponed": false,
+    "isScrimmage": false,
+    "isTba": false,
+    "teamEvents": [
+      {
+        "id": "77767103",
+        "team": {
+          "id": "7840894",
+          "schools": [
+            {
+              "id": "10150",
+              "name": "Myers Park High School",
+              "valid": true,
+              "vnnMember": true,
+              "logoUrl": "https://production-gofan-assets.s3.amazonaws.com/uploads/school/logo/NC1598/Myers_Park_High_School.png?"
+            }
+          ]
+        }
+      },
+      {
+        "id": "77767104",
+        "team": {
+          "id": "7911153",
+          "schools": [
+            {
+              "id": "21785",
+              "name": "Ballantyne Ridge High School",
+              "valid": true,
+              "vnnMember": true,
+              "logoUrl": "https://sportshub2-uploads.vnn-prod.zone/files/sites/5833/2024/01/24115316/Ballantyne_Ridge_HS_Logo-removebg-preview.png"
+            }
+          ]
+        }
+      }
+    ],
+    "location": {
+      "name": "Ballantyne Ridge High School",
+      "address1": null,
+      "city": null,
+      "state": null,
+      "timezone": null,
+      "school": {
+        "id": "10150",
+        "logoUrl": "https://production-gofan-assets.s3.amazonaws.com/uploads/school/logo/NC1598/Myers_Park_High_School.png?",
+        "name": "Myers Park High School",
+        "primaryColor": "#51A020"
+      }
+    },
+    "game": {
+      "id": "38213919",
+      "homeTeam": {
+        "id": "7911153",
+        "displayName": "Girls JV Volleyball",
+        "photoUrl": null,
+        "schools": [
+          {
+            "id": "21785",
+            "name": "Ballantyne Ridge High School",
+            "logoUrl": "https://sportshub2-uploads.vnn-prod.zone/files/sites/5833/2024/01/24115316/Ballantyne_Ridge_HS_Logo-removebg-preview.png",
+            "primaryColor": "#00AED8",
+            "mascot": "Wolves",
+            "url": "https://ballantyneridgeathleticzone.com",
+            "vnnMember": true,
+            "unidatAddress1": "4004 Toringdon Way",
+            "unidatAddress2": null,
+            "unidatCity": "Charlotte",
+            "unidatLatitude": 35.0681,
+            "unidatLongitude": -80.8415,
+            "unidatMascot": "Wolves",
+            "unidatName": "Ballantyne Ridge",
+            "unidatState": "NC",
+            "unidatTimeZone": "America/New_York",
+            "unidatZipCode": "28277",
+            "displayOverrideAddress1": null,
+            "displayOverrideAddress2": null,
+            "displayOverrideCity": null,
+            "displayOverrideMascot": null,
+            "displayOverrideName": "Ballantyne Ridge High School",
+            "displayOverrideState": null,
+            "displayOverrideZipCode": null
+          }
+        ],
+        "sport": {
+          "id": "64",
+          "name": "Volleyball"
+        },
+        "level": {
+          "id": "2",
+          "name": "Junior Varsity"
+        },
+        "gender": {
+          "id": "2",
+          "name": "Girls"
+        }
+      },
+      "awayTeam": {
+        "id": "7840894",
+        "displayName": "Girls JV Volleyball",
+        "photoUrl": null,
+        "schools": [
+          {
+            "id": "10150",
+            "name": "Myers Park High School",
+            "logoUrl": "https://production-gofan-assets.s3.amazonaws.com/uploads/school/logo/NC1598/Myers_Park_High_School.png?",
+            "primaryColor": "#51A020",
+            "mascot": "Mustangs",
+            "url": "https://myersparkathleticzone.com",
+            "vnnMember": true,
+            "unidatAddress1": "2400 Colony Road",
+            "unidatAddress2": null,
+            "unidatCity": "Charlotte",
+            "unidatLatitude": 35.171,
+            "unidatLongitude": -80.834,
+            "unidatMascot": "Mustangs",
+            "unidatName": "Myers Park",
+            "unidatState": "NC",
+            "unidatTimeZone": "America/New_York",
+            "unidatZipCode": "28209",
+            "displayOverrideAddress1": "2400 Colony Rd",
+            "displayOverrideAddress2": null,
+            "displayOverrideCity": null,
+            "displayOverrideMascot": null,
+            "displayOverrideName": "Myers Park High School",
+            "displayOverrideState": null,
+            "displayOverrideZipCode": null
+          }
+        ],
+        "sport": {
+          "id": "64",
+          "name": "Volleyball"
+        },
+        "level": {
+          "id": "2",
+          "name": "Junior Varsity"
+        },
+        "gender": {
+          "id": "2",
+          "name": "Girls"
+        }
+      },
+      "opponent": null
+    },
+    "meet": null,
+    "activity": null
+  },
+  {
+    "id": "38205421",
+    "globalEventId": null,
+    "eventType": "game",
+    "start": "2026-08-18T18:30:00.000Z",
+    "isCancelled": false,
+    "isPostponed": false,
+    "isScrimmage": false,
+    "isTba": false,
+    "teamEvents": [
+      {
+        "id": "77748252",
+        "team": {
+          "id": "7840893",
+          "schools": [
+            {
+              "id": "10150",
+              "name": "Myers Park High School",
+              "valid": true,
+              "vnnMember": true,
+              "logoUrl": "https://production-gofan-assets.s3.amazonaws.com/uploads/school/logo/NC1598/Myers_Park_High_School.png?"
+            }
+          ]
+        }
+      },
+      {
+        "id": "77748256",
+        "team": {
+          "id": "7911152",
+          "schools": [
+            {
+              "id": "21785",
+              "name": "Ballantyne Ridge High School",
+              "valid": true,
+              "vnnMember": true,
+              "logoUrl": "https://sportshub2-uploads.vnn-prod.zone/files/sites/5833/2024/01/24115316/Ballantyne_Ridge_HS_Logo-removebg-preview.png"
+            }
+          ]
+        }
+      }
+    ],
+    "location": {
+      "name": "Ballantyne Ridge High School",
+      "address1": null,
+      "city": null,
+      "state": null,
+      "timezone": null,
+      "school": {
+        "id": "10150",
+        "logoUrl": "https://production-gofan-assets.s3.amazonaws.com/uploads/school/logo/NC1598/Myers_Park_High_School.png?",
+        "name": "Myers Park High School",
+        "primaryColor": "#51A020"
+      }
+    },
+    "game": {
+      "id": "38205421",
+      "homeTeam": {
+        "id": "7911152",
+        "displayName": "Girls Varsity Volleyball",
+        "photoUrl": null,
+        "schools": [
+          {
+            "id": "21785",
+            "name": "Ballantyne Ridge High School",
+            "logoUrl": "https://sportshub2-uploads.vnn-prod.zone/files/sites/5833/2024/01/24115316/Ballantyne_Ridge_HS_Logo-removebg-preview.png",
+            "primaryColor": "#00AED8",
+            "mascot": "Wolves",
+            "url": "https://ballantyneridgeathleticzone.com",
+            "vnnMember": true,
+            "unidatAddress1": "4004 Toringdon Way",
+            "unidatAddress2": null,
+            "unidatCity": "Charlotte",
+            "unidatLatitude": 35.0681,
+            "unidatLongitude": -80.8415,
+            "unidatMascot": "Wolves",
+            "unidatName": "Ballantyne Ridge",
+            "unidatState": "NC",
+            "unidatTimeZone": "America/New_York",
+            "unidatZipCode": "28277",
+            "displayOverrideAddress1": null,
+            "displayOverrideAddress2": null,
+            "displayOverrideCity": null,
+            "displayOverrideMascot": null,
+            "displayOverrideName": "Ballantyne Ridge High School",
+            "displayOverrideState": null,
+            "displayOverrideZipCode": null
+          }
+        ],
+        "sport": {
+          "id": "64",
+          "name": "Volleyball"
+        },
+        "level": {
+          "id": "1",
+          "name": "Varsity"
+        },
+        "gender": {
+          "id": "2",
+          "name": "Girls"
+        }
+      },
+      "awayTeam": {
+        "id": "7840893",
+        "displayName": "Girls Varsity Volleyball",
+        "photoUrl": null,
+        "schools": [
+          {
+            "id": "10150",
+            "name": "Myers Park High School",
+            "logoUrl": "https://production-gofan-assets.s3.amazonaws.com/uploads/school/logo/NC1598/Myers_Park_High_School.png?",
+            "primaryColor": "#51A020",
+            "mascot": "Mustangs",
+            "url": "https://myersparkathleticzone.com",
+            "vnnMember": true,
+            "unidatAddress1": "2400 Colony Road",
+            "unidatAddress2": null,
+            "unidatCity": "Charlotte",
+            "unidatLatitude": 35.171,
+            "unidatLongitude": -80.834,
+            "unidatMascot": "Mustangs",
+            "unidatName": "Myers Park",
+            "unidatState": "NC",
+            "unidatTimeZone": "America/New_York",
+            "unidatZipCode": "28209",
+            "displayOverrideAddress1": "2400 Colony Rd",
+            "displayOverrideAddress2": null,
+            "displayOverrideCity": null,
+            "displayOverrideMascot": null,
+            "displayOverrideName": "Myers Park High School",
+            "displayOverrideState": null,
+            "displayOverrideZipCode": null
+          }
+        ],
+        "sport": {
+          "id": "64",
+          "name": "Volleyball"
+        },
+        "level": {
+          "id": "1",
+          "name": "Varsity"
+        },
+        "gender": {
+          "id": "2",
+          "name": "Girls"
+        }
+      },
+      "opponent": null
+    },
+    "meet": null,
+    "activity": null
+  }
+]

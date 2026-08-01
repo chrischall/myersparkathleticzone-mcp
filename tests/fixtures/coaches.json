@@ -1,0 +1,32 @@
+[
+  {
+    "id": "3377208",
+    "firstName": null,
+    "lastName": null,
+    "photoUrl": null,
+    "coachPosition": {
+      "id": "3",
+      "name": "Scorekeeper"
+    },
+    "user": {
+      "firstName": "Drewthrasher",
+      "lastName": "Drewthrasher",
+      "photoUrl": null
+    }
+  },
+  {
+    "id": "3377209",
+    "firstName": null,
+    "lastName": null,
+    "photoUrl": null,
+    "coachPosition": {
+      "id": "1",
+      "name": "Head Coach"
+    },
+    "user": {
+      "firstName": "Chris ",
+      "lastName": "James",
+      "photoUrl": null
+    }
+  }
+]

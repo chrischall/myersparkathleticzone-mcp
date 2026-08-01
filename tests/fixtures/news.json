@@ -1,0 +1,32 @@
+[
+  {
+    "id": "5e1dab66-6f5c-4fca-ba5f-28cca9ababda",
+    "title": "2026 MENS SOCCER",
+    "publishedDatetimeUtc": "2026-05-28T14:31:07.377Z",
+    "featuredPhotoAltText": "",
+    "featuredImageUrl": "",
+    "isDeleted": false,
+    "endDatetimeUtc": null,
+    "active": true
+  },
+  {
+    "id": "9b5835c8-7cc2-429e-96d0-b0fa2894dd4a",
+    "title": "2026 GIRLS FLAG FOOTBALL",
+    "publishedDatetimeUtc": "2026-05-28T14:25:39.596Z",
+    "featuredPhotoAltText": "",
+    "featuredImageUrl": "",
+    "isDeleted": false,
+    "endDatetimeUtc": "2026-08-04T03:59:01.000Z",
+    "active": true
+  },
+  {
+    "id": "8f23724c-769d-46b5-875b-0abd00a7ad3f",
+    "title": "Ortho Supports Athletics Through CAA",
+    "publishedDatetimeUtc": "2026-02-11T05:00:00.000Z",
+    "featuredPhotoAltText": "Ortho/CAA Partnership",
+    "featuredImageUrl": "https://sites-assets.playonsharedprod.playonsports.com/image-attachments/2026/02/11/c88429cf-a270-43fd-9a3f-18478b8b1f4c.png",
+    "isDeleted": false,
+    "endDatetimeUtc": null,
+    "active": true
+  }
+]

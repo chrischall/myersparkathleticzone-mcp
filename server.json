@@ -1,0 +1,34 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.chrischall/myersparkathleticzone-mcp",
+  "description": "Myers Park HS athletics — schedules, teams, rosters, coaches, news and broadcast links",
+  "repository": {
+    "url": "https://github.com/chrischall/myersparkathleticzone-mcp",
+    "source": "github"
+  },
+  "version": "0.0.0",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "myersparkathleticzone-mcp",
+      "version": "0.0.0",
+      "transport": { "type": "stdio" },
+      "environmentVariables": [
+        {
+          "name": "MPAZ_SITE_URL",
+          "description": "Optional. Another Athletic Zone school site; defaults to www.myersparkathleticzone.com.",
+          "isRequired": false,
+          "format": "string",
+          "isSecret": false
+        },
+        {
+          "name": "MPAZ_SCHOOL_ID",
+          "description": "Optional. GoFan/PlayOn school id used to tell your teams from opponents; defaults to 10150.",
+          "isRequired": false,
+          "format": "string",
+          "isSecret": false
+        }
+      ]
+    }
+  ]
+}

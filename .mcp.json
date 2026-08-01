@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "myersparkathleticzone": {
+      "command": "node",
+      "args": ["${CLAUDE_PLUGIN_ROOT}/dist/index.js"],
+      "env": {
+        "MPAZ_SITE_URL": "${MPAZ_SITE_URL}",
+        "MPAZ_SCHOOL_ID": "${MPAZ_SCHOOL_ID}"
+      }
+    }
+  }
+}
