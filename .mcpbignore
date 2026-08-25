@@ -72,4 +72,3 @@ scripts/
 release-please-config.json
 .release-please-manifest.json
 CHANGELOG.md
-mint.yaml
