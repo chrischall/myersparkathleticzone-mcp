@@ -1,0 +1,22 @@
+version: 1
+name: Myers Park Athletic Zone
+slug: myersparkathleticzone
+summary: >-
+  Schedules, teams, rosters, coaches, news and broadcast links for Myers
+  Park High School athletics
+env:
+  - name: MPAZ_SITE_URL
+    required: false
+    help: >-
+      Optional. Another Athletic Zone school site; defaults to
+      www.myersparkathleticzone.com.
+  - name: MPAZ_SCHOOL_ID
+    required: false
+    help: >-
+      Optional. GoFan/PlayOn school id used to tell your teams from opponents;
+      defaults to 10150.
+egress:
+  allow:
+    # Only hosts the SERVER process actually fetches. Hosts that appear
+    # solely in a URL this server BUILDS and returns are excluded.
+    - www.myersparkathleticzone.com
