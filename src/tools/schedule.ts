@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
-import { textResult, toolAnnotations } from '@chrischall/mcp-utils';
+import { minifiedResult, toolAnnotations } from '@chrischall/mcp-utils';
 import { client } from '../client.js';
 import { normalizeEvent, normalizeCoach } from '../normalize.js';
 import { currentSchoolYear, normalizeYear } from '../season.js';
@@ -45,7 +45,7 @@ export function registerScheduleTools(server: McpServer): void {
       const season = year ? normalizeYear(year) : currentSchoolYear();
       const raw = await client.entities('/schedule', 'events', { year: season });
       const events = raw.map((e) => normalizeEvent(e, client.schoolId)).sort(byStart);
-      return textResult({
+      return minifiedResult({
         year: season,
         count: events.length,
         window: 'upcoming events only — not the full season',
@@ -73,7 +73,7 @@ export function registerScheduleTools(server: McpServer): void {
       const season = year ? normalizeYear(year) : currentSchoolYear();
       const raw = await client.entities(`/sport/${sportSlug}/schedule`, 'events', { team: teamId, year: season });
       const events = raw.map((e) => normalizeEvent(e, client.schoolId)).sort(byStart);
-      return textResult({ year: season, sportSlug, teamId, count: events.length, events });
+      return minifiedResult({ year: season, sportSlug, teamId, count: events.length, events });
     },
   );
 
@@ -98,7 +98,7 @@ export function registerScheduleTools(server: McpServer): void {
       const season = year ? normalizeYear(year) : currentSchoolYear();
       const raw = await client.entities(`/sport/${sportSlug}/scores`, 'events', { team: teamId, year: season });
       const events = raw.map((e) => normalizeEvent(e, client.schoolId)).sort(byStart);
-      return textResult({
+      return minifiedResult({
         year: season,
         sportSlug,
         teamId,
@@ -138,7 +138,7 @@ export function registerScheduleTools(server: McpServer): void {
         team: teamId,
         year: season,
       });
-      return textResult({
+      return minifiedResult({
         year: season,
         sportSlug,
         teamId,

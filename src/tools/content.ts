@@ -1,5 +1,5 @@
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
-import { textResult, toolAnnotations } from '@chrischall/mcp-utils';
+import { minifiedResult, toolAnnotations } from '@chrischall/mcp-utils';
 import { client } from '../client.js';
 import { VERSION } from '../version.js';
 
@@ -15,7 +15,7 @@ export function registerContentTools(server: McpServer): void {
     async () => {
       const news = await client.entities('/', 'news');
       news.sort((a, b) => String(b.publishedDatetimeUtc ?? '').localeCompare(String(a.publishedDatetimeUtc ?? '')));
-      return textResult({ count: news.length, news });
+      return minifiedResult({ count: news.length, news });
     },
   );
 
@@ -37,7 +37,7 @@ export function registerContentTools(server: McpServer): void {
     },
     async () => {
       const videos = await client.entities('/', 'videos');
-      return textResult({
+      return minifiedResult({
         count: videos.length,
         note: 'Links to NFHS Network broadcasts; durations are not published.',
         videos,
@@ -57,7 +57,7 @@ export function registerContentTools(server: McpServer): void {
     },
     async () => {
       const galleries = await client.entities('/media/photos', 'galleries');
-      return textResult({ count: galleries.length, galleries });
+      return minifiedResult({ count: galleries.length, galleries });
     },
   );
 
@@ -87,7 +87,7 @@ export function registerContentTools(server: McpServer): void {
         ok = false;
         detail = err instanceof Error ? err.message : String(err);
       }
-      return textResult({
+      return minifiedResult({
         ok,
         version: VERSION,
         siteUrl: client.siteUrl,
