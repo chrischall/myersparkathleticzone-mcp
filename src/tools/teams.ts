@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
-import { textResult, toolAnnotations, createHelpfulError } from '@chrischall/mcp-utils';
+import { createHelpfulError, minifiedResult, toolAnnotations } from '@chrischall/mcp-utils';
 import { client, type AthleticZoneClient } from '../client.js';
 import { ownTeams, normalizeTeam, sportSlug, type Team } from '../normalize.js';
 import { rankTeams } from '../match.js';
@@ -126,7 +126,7 @@ export function registerTeamTools(server: McpServer): void {
     async ({ year }) => {
       const season = year ? normalizeYear(year) : currentSchoolYear();
       const lookup = await listTeams(season);
-      return textResult({
+      return minifiedResult({
         year: season,
         schoolId: client.schoolId,
         count: lookup.teams.length,
@@ -173,7 +173,7 @@ export function registerTeamTools(server: McpServer): void {
         });
       }
 
-      return textResult({
+      return minifiedResult({
         year: season,
         query,
         matched: matches.length,
