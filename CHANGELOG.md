@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.3.0](https://github.com/chrischall/myersparkathleticzone-mcp/compare/v0.2.0...v0.3.0) (2026-09-04)
+
+
+### Features
+
+* **tools:** minify every response — no formatting whitespace on any payload ([#30](https://github.com/chrischall/myersparkathleticzone-mcp/issues/30)) ([a242332](https://github.com/chrischall/myersparkathleticzone-mcp/commit/a242332292dedda6ad01863d0b0d5a8158b60661))
+
+
+### Bug Fixes
+
+* **build:** restore the literal em dash in the package description ([#33](https://github.com/chrischall/myersparkathleticzone-mcp/issues/33)) ([ab81ae5](https://github.com/chrischall/myersparkathleticzone-mcp/commit/ab81ae5cb258349ffbaf5f3d5e02c98917ff104a))
+
+
+### Refactor
+
+* **tools:** drop the unwired view.ts scaffold ([#34](https://github.com/chrischall/myersparkathleticzone-mcp/issues/34)) ([9ad4b18](https://github.com/chrischall/myersparkathleticzone-mcp/commit/9ad4b189ab91faec6cbae09a44a7be8723c0e1cf))
+
 ## [0.2.0](https://github.com/chrischall/myersparkathleticzone-mcp/compare/v0.1.0...v0.2.0) (2026-08-01)
 
 
