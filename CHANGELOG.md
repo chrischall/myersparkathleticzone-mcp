@@ -5,7 +5,7 @@
 
 ### Features
 
-* **tools:** compact by default — strip media URLs, and minify every response ([#30](https://github.com/chrischall/myersparkathleticzone-mcp/issues/30)) ([a242332](https://github.com/chrischall/myersparkathleticzone-mcp/commit/a242332292dedda6ad01863d0b0d5a8158b60661))
+* **tools:** minify every response — no formatting whitespace on any payload ([#30](https://github.com/chrischall/myersparkathleticzone-mcp/issues/30)) ([a242332](https://github.com/chrischall/myersparkathleticzone-mcp/commit/a242332292dedda6ad01863d0b0d5a8158b60661))
 
 
 ### Bug Fixes
