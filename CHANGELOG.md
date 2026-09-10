@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.3.1](https://github.com/chrischall/myersparkathleticzone-mcp/compare/v0.3.0...v0.3.1) (2026-09-10)
+
+
+### Bug Fixes
+
+* **deps:** @chrischall/mcp-utils 0.26.1 ([#43](https://github.com/chrischall/myersparkathleticzone-mcp/issues/43)) ([0e89e60](https://github.com/chrischall/myersparkathleticzone-mcp/commit/0e89e60ca61ab65979c8a5247b2fa4524b4a8907))
+* **deps:** bump hono from 4.13.1 to 4.13.7 ([#41](https://github.com/chrischall/myersparkathleticzone-mcp/issues/41)) ([0e36052](https://github.com/chrischall/myersparkathleticzone-mcp/commit/0e36052bb7689a78ad2d5debd9e7da1f589c9e6c))
+* **deps:** declare the peer floors mcp-utils 0.26.1 requires ([#45](https://github.com/chrischall/myersparkathleticzone-mcp/issues/45)) ([f9ec8ac](https://github.com/chrischall/myersparkathleticzone-mcp/commit/f9ec8ac00bb24e1cabd59d2c2879a2885af1bfb7)), closes [#44](https://github.com/chrischall/myersparkathleticzone-mcp/issues/44)
+
 ## [0.3.0](https://github.com/chrischall/myersparkathleticzone-mcp/compare/v0.2.0...v0.3.0) (2026-09-04)
 
 
