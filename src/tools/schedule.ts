@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import type { McpServer } from '@modelcontextprotocol/server';
 import { minifiedResult, toolAnnotations } from '@chrischall/mcp-utils';
 import { client } from '../client.js';
 import { normalizeEvent, normalizeCoach } from '../normalize.js';
@@ -39,7 +39,7 @@ export function registerScheduleTools(server: McpServer): void {
         idempotent: true,
         openWorld: true,
       }),
-      inputSchema: { year: YearArg },
+      inputSchema: z.object({ year: YearArg }),
     },
     async ({ year }) => {
       const season = year ? normalizeYear(year) : currentSchoolYear();
@@ -67,7 +67,7 @@ export function registerScheduleTools(server: McpServer): void {
         idempotent: true,
         openWorld: true,
       }),
-      inputSchema: { sportSlug: SportSlugArg, teamId: TeamIdArg, year: YearArg },
+      inputSchema: z.object({ sportSlug: SportSlugArg, teamId: TeamIdArg, year: YearArg }),
     },
     async ({ sportSlug, teamId, year }) => {
       const season = year ? normalizeYear(year) : currentSchoolYear();
@@ -92,7 +92,7 @@ export function registerScheduleTools(server: McpServer): void {
         idempotent: true,
         openWorld: true,
       }),
-      inputSchema: { sportSlug: SportSlugArg, teamId: TeamIdArg, year: YearArg },
+      inputSchema: z.object({ sportSlug: SportSlugArg, teamId: TeamIdArg, year: YearArg }),
     },
     async ({ sportSlug, teamId, year }) => {
       const season = year ? normalizeYear(year) : currentSchoolYear();
@@ -130,7 +130,7 @@ export function registerScheduleTools(server: McpServer): void {
         idempotent: true,
         openWorld: true,
       }),
-      inputSchema: { sportSlug: SportSlugArg, teamId: TeamIdArg, year: YearArg },
+      inputSchema: z.object({ sportSlug: SportSlugArg, teamId: TeamIdArg, year: YearArg }),
     },
     async ({ sportSlug, teamId, year }) => {
       const season = year ? normalizeYear(year) : currentSchoolYear();

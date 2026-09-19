@@ -1,4 +1,5 @@
-import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import type { McpServer } from '@modelcontextprotocol/server';
+import { z } from 'zod';
 import { minifiedResult, toolAnnotations } from '@chrischall/mcp-utils';
 import { client } from '../client.js';
 import { VERSION } from '../version.js';
@@ -10,7 +11,7 @@ export function registerContentTools(server: McpServer): void {
       title: 'List news posts',
       description: 'Recent news posts from the athletics site homepage, newest first. Read-only.',
       annotations: toolAnnotations({ title: 'List news posts', readOnly: true, idempotent: true, openWorld: true }),
-      inputSchema: {},
+      inputSchema: z.object({}),
     },
     async () => {
       const news = await client.entities('/', 'news');
@@ -33,7 +34,7 @@ export function registerContentTools(server: McpServer): void {
         idempotent: true,
         openWorld: true,
       }),
-      inputSchema: {},
+      inputSchema: z.object({}),
     },
     async () => {
       const videos = await client.entities('/', 'videos');
@@ -53,7 +54,7 @@ export function registerContentTools(server: McpServer): void {
         'Photo galleries published on the site. Images sit on a public CDN and can be fetched directly, no auth. ' +
         'Read-only.',
       annotations: toolAnnotations({ title: 'List photo galleries', readOnly: true, idempotent: true, openWorld: true }),
-      inputSchema: {},
+      inputSchema: z.object({}),
     },
     async () => {
       const galleries = await client.entities('/media/photos', 'galleries');
@@ -74,7 +75,7 @@ export function registerContentTools(server: McpServer): void {
         idempotent: true,
         openWorld: true,
       }),
-      inputSchema: {},
+      inputSchema: z.object({}),
     },
     async () => {
       const started = Date.now();

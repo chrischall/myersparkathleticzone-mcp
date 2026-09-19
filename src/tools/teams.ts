@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import type { McpServer } from '@modelcontextprotocol/server';
 import { createHelpfulError, minifiedResult, toolAnnotations } from '@chrischall/mcp-utils';
 import { client, type AthleticZoneClient } from '../client.js';
 import { ownTeams, normalizeTeam, sportSlug, type Team } from '../normalize.js';
@@ -121,7 +121,7 @@ export function registerTeamTools(server: McpServer): void {
         idempotent: true,
         openWorld: true,
       }),
-      inputSchema: { year: YearArg },
+      inputSchema: z.object({ year: YearArg }),
     },
     async ({ year }) => {
       const season = year ? normalizeYear(year) : currentSchoolYear();
@@ -150,10 +150,10 @@ export function registerTeamTools(server: McpServer): void {
         idempotent: true,
         openWorld: true,
       }),
-      inputSchema: {
+      inputSchema: z.object({
         query: z.string().min(1).describe('Team name fragment, e.g. "varsity football"'),
         year: YearArg,
-      },
+      }),
     },
     async ({ query, year }) => {
       const season = year ? normalizeYear(year) : currentSchoolYear();
