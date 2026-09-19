@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.0.0](https://github.com/chrischall/myersparkathleticzone-mcp/compare/v0.3.1...v1.0.0) (2026-09-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* **mcp:** migrate server to SDK v2 ([#48](https://github.com/chrischall/myersparkathleticzone-mcp/issues/48))
+
+### Features
+
+* **mcp:** migrate server to SDK v2 ([#48](https://github.com/chrischall/myersparkathleticzone-mcp/issues/48)) ([e02ebdd](https://github.com/chrischall/myersparkathleticzone-mcp/commit/e02ebdd669a7e635394ddfc33f11e86589ba5764))
+
 ## [0.3.1](https://github.com/chrischall/myersparkathleticzone-mcp/compare/v0.3.0...v0.3.1) (2026-09-10)
 
 
