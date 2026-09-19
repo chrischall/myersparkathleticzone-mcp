@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/chrischall/myersparkathleticzone-mcp/compare/v1.0.0...v1.1.0) (2026-09-19)
+
+
+### Features
+
+* **deps:** take mcp-utils 1.0.0 for the 2026-era stdio entry ([#55](https://github.com/chrischall/myersparkathleticzone-mcp/issues/55)) ([24c9408](https://github.com/chrischall/myersparkathleticzone-mcp/commit/24c9408fc3af5ebf0abc3d6f396005da84680b64))
+
 ## [1.0.0](https://github.com/chrischall/myersparkathleticzone-mcp/compare/v0.3.1...v1.0.0) (2026-09-19)
 
 
