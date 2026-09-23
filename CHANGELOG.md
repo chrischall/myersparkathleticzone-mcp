@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.1](https://github.com/chrischall/myersparkathleticzone-mcp/compare/v1.1.0...v1.1.1) (2026-09-23)
+
+
+### Bug Fixes
+
+* **deps:** require zod ^4.6.5 to match @chrischall/mcp-utils 2.4.0 ([#59](https://github.com/chrischall/myersparkathleticzone-mcp/issues/59)) ([0d2fa29](https://github.com/chrischall/myersparkathleticzone-mcp/commit/0d2fa2913ed5e6dd8a12e206be20526eea9ab12f))
+* **deps:** upgrade @chrischall/mcp-utils to 2.4.0 and @fetchproxy/* to 3.2.0 ([#57](https://github.com/chrischall/myersparkathleticzone-mcp/issues/57)) ([8593ae3](https://github.com/chrischall/myersparkathleticzone-mcp/commit/8593ae346ede0e1335e582f36d8f6ae40ef02e10))
+
 ## [1.1.0](https://github.com/chrischall/myersparkathleticzone-mcp/compare/v1.0.0...v1.1.0) (2026-09-19)
 
 
