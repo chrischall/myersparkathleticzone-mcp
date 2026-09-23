@@ -23,6 +23,10 @@ const TeamIdArg = z
   .regex(/^\d+$/, 'Team ids are numeric')
   .describe('Numeric team id from mpaz_list_teams / mpaz_resolve_team. Ids differ per school year.');
 
+const TIME_NOTE =
+  ' Each event\'s `startLocal` is the local time at the school (in `timeZone`, e.g. America/New_York) — quote it ' +
+  'as-is; `start` is the same moment in true UTC.';
+
 const byStart = (a: { start: string | null }, b: { start: string | null }) => (a.start ?? '').localeCompare(b.start ?? '');
 
 export function registerScheduleTools(server: McpServer): void {
@@ -32,7 +36,7 @@ export function registerScheduleTools(server: McpServer): void {
       title: 'Get the all-school schedule',
       description:
         'Upcoming events across every team, oldest first. Note this page returns a WINDOW of upcoming events ' +
-        '(10 observed), not a whole season — for a team\'s full season use mpaz_get_team_schedule. Read-only.',
+        '(10 observed), not a whole season — for a team\'s full season use mpaz_get_team_schedule.' + TIME_NOTE + ' Read-only.',
       annotations: toolAnnotations({
         title: 'Get the all-school schedule',
         readOnly: true,
@@ -60,7 +64,7 @@ export function registerScheduleTools(server: McpServer): void {
       title: 'Get one team\'s full schedule',
       description:
         'A single team\'s complete season, oldest first. Requires BOTH the sport slug and the team id — resolve them ' +
-        'with mpaz_list_teams or mpaz_resolve_team first. Read-only.',
+        'with mpaz_list_teams or mpaz_resolve_team first.' + TIME_NOTE + ' Read-only.',
       annotations: toolAnnotations({
         title: 'Get one team\'s full schedule',
         readOnly: true,
@@ -85,7 +89,7 @@ export function registerScheduleTools(server: McpServer): void {
         'Completed games with results for a single team: `homeScore`/`awayScore` plus `teamScore`/`opponentScore`/' +
         '`result` from this school\'s point of view. Each side\'s score is stored independently upstream, so a ' +
         'half-entered game yields a null score and `result: null` — a missing score is unknown, never zero. ' +
-        'Prefer mpaz_get_team_schedule for upcoming fixtures. Read-only.',
+        'Prefer mpaz_get_team_schedule for upcoming fixtures.' + TIME_NOTE + ' Read-only.',
       annotations: toolAnnotations({
         title: 'Get one team\'s results',
         readOnly: true,

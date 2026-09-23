@@ -71,7 +71,7 @@ These matter more than the happy path, because none of them look like failures:
   "id": "38076875",
   "globalEventId": "d74a8514-d62e-4357-9b60-0a07b06aa76c",
   "eventType": "game",
-  "start": "2026-08-14T18:30:00.000Z",     // ISO UTC; the site displays America/New_York
+  "start": "2026-08-14T18:30:00.000Z",     // LOCAL wall time (America/New_York) with a FALSE "Z" — 6:30pm, not 2:30pm
   "isCancelled": false, "isPostponed": false, "isScrimmage": false, "isTba": false,
   "teamEvents": [ { "id": "77493385", "team": { "id": "7840877", "schools": [ { "id": "10150", "name": "Myers Park High School" } ] } } ],
   "location": { "name": "Julius L. Chambers High School", "state": { "abbreviation": "NC" }, "school": { "id": "10150" } },
@@ -85,6 +85,8 @@ Two traps encoded in `src/normalize.ts`:
 - **Name the opponent by its school** (`schools[0].name`), never by `displayName`: both sides' `displayName` is the sport label, so using it renders `Girls JV Volleyball at Girls JV Volleyball`.
 
 `location.name` is the venue and can differ from the home school (neutral sites).
+
+**`start` is not UTC.** It is the school's local wall-clock time serialised with a `.000Z` suffix. Scores rows prove it: their `startUtc` is always 4h (EDT) or 5h (EST) later than `start` (`2025-10-14T19:00:00.000Z` / `2025-10-14T23:00:00Z`; `2025-11-06T18:00:00.000Z` / `2025-11-06T23:00:00Z`). `src/time.ts` therefore emits `start` as the real UTC instant (from `startUtc` when present, else by converting the wall time in the school's `unidatTimeZone`), plus `startLocal` (wall time, no offset) and `timeZone`.
 
 ### Team (`sport` + `gender` + `level` + `id`)
 
@@ -153,7 +155,7 @@ The scores page returns a **different event shape** to the schedule page:
   "eventType": "game",
   "id": "24855916",
   "start": "2024-10-17T14:42:00.000Z",
-  "startUtc": "2024-10-17T18:42:00Z",        // extra, scores pages only
+  "startUtc": "2024-10-17T18:42:00Z",        // extra, scores pages only — the REAL instant; `start` is local wall time
   "isCancelled": false,
   "teamEvents": [ { "id": "47225592", "eventLinks": [] } ],   // eventLinks, NOT team
   "game": {

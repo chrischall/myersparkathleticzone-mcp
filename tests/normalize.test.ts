@@ -41,7 +41,9 @@ describe('normalizeEvent', () => {
     expect(n).toMatchObject({
       id: events[0].id,
       eventType: events[0].eventType,
-      start: events[0].start,
+      // `start` is re-read as local time and emitted as the real UTC instant;
+      // see tests/event-time.test.ts.
+      startLocal: events[0].start.slice(0, 19),
       isCancelled: false,
       isTba: false,
     });

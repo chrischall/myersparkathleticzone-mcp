@@ -4,6 +4,7 @@
 // throwing when one is absent.
 
 import type { FlightObject } from './flight.js';
+import { DEFAULT_TIME_ZONE, eventTime, isTimeZone } from './time.js';
 
 /** Sport slugs are "<gender>-<sport>", lowercased and hyphenated. */
 export function sportSlug(gender: string | null, sport: string | null): string | null {
@@ -63,7 +64,12 @@ export function ownTeams(raw: FlightObject[], schoolId: string): Team[] {
 export interface NormalizedEvent {
   id: string | null;
   eventType: string | null;
+  /** The real UTC instant (ISO-8601, `Z`). The raw payload's `start` is local time with a false `Z`. */
   start: string | null;
+  /** Local wall-clock time at the school, no offset — e.g. "2026-08-14T18:30:00". */
+  startLocal: string | null;
+  /** IANA zone `startLocal` is expressed in. */
+  timeZone: string;
   team: string | null;
   opponent: string | null;
   isHome: boolean | null;
@@ -105,6 +111,26 @@ function opponentName(game: FlightObject | undefined, theirs: FlightObject | und
 }
 
 /**
+ * The IANA zone the event's wall-clock `start` is written in: our own school's
+ * `unidatTimeZone`, else any school on the fixture, else the default. Unknown
+ * zone names are skipped rather than trusted.
+ */
+function schoolTimeZone(game: FlightObject | undefined, mine: FlightObject | undefined, schoolId: string): string {
+  const schoolsOf = (t: unknown) => ((t as FlightObject | undefined)?.schools as FlightObject[] | undefined) ?? [];
+  const candidates = [
+    ...schoolsOf(mine).filter((s) => str(s?.id) === schoolId),
+    ...schoolsOf(game?.homeTeam),
+    ...schoolsOf(game?.awayTeam),
+    (game?.opponent as FlightObject | undefined)?.opponent as FlightObject | undefined,
+  ];
+  for (const s of candidates) {
+    const tz = s?.unidatTimeZone;
+    if (isTimeZone(tz)) return tz;
+  }
+  return DEFAULT_TIME_ZONE;
+}
+
+/**
  * Project one event from our school's point of view.
  *
  * Home/away comes from the `game` block, never from `teamEvents` order, and is
@@ -139,6 +165,9 @@ export function normalizeEvent(raw: FlightObject, schoolId: string): NormalizedE
   const mine = isHome === null ? undefined : isHome ? home : away;
   const theirs = isHome === null ? undefined : isHome ? away : home;
 
+  const timeZone = schoolTimeZone(game, mine, schoolId);
+  const { start, startLocal } = eventTime(raw.start, raw.startUtc, timeZone);
+
   const homeScore = num((game as FlightObject | undefined)?.homeScore);
   const awayScore = num((game as FlightObject | undefined)?.awayScore);
   const teamScore = isHome === null ? null : isHome ? homeScore : awayScore;
@@ -159,7 +188,9 @@ export function normalizeEvent(raw: FlightObject, schoolId: string): NormalizedE
   return {
     id: str(raw.id),
     eventType: str(raw.eventType),
-    start: str(raw.start),
+    start,
+    startLocal,
+    timeZone,
     team: str(mine?.displayName),
     opponent: opponentName(game, theirs),
     isHome,
