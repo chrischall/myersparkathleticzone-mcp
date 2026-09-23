@@ -27,7 +27,7 @@ If a team tool reports "Team … Not Found", the id is stale — re-resolve it f
 
 ## Reading the results
 
-- `start` is **ISO UTC**; the school is in America/New_York, so convert before telling the user a kickoff time.
+- `startLocal` is the kickoff in the school's own time zone (`timeZone`, normally America/New_York) — quote it as-is. `start` is the same moment as a true UTC instant; do **not** convert `startLocal`, and don't read `start` as local time.
 - `isHome` says whether Myers Park hosts; `opponent` is the other **school**; `venue` can differ from either on neutral sites.
 - `team` is Myers Park's side of the fixture.
 - Check `isCancelled` / `isPostponed` / `isTba` before stating a game is on.
