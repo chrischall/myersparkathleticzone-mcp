@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.2](https://github.com/chrischall/myersparkathleticzone-mcp/compare/v1.1.1...v1.1.2) (2026-09-23)
+
+
+### Bug Fixes
+
+* **schedule:** report event start times in true UTC plus local kickoff time ([#60](https://github.com/chrischall/myersparkathleticzone-mcp/issues/60)) ([42f2fe1](https://github.com/chrischall/myersparkathleticzone-mcp/commit/42f2fe1d53ac8a5ec81b50796585585430fae44d))
+
 ## [1.1.1](https://github.com/chrischall/myersparkathleticzone-mcp/compare/v1.1.0...v1.1.1) (2026-09-23)
 
 
