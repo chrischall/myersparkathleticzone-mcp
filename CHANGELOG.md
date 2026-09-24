@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.3](https://github.com/chrischall/myersparkathleticzone-mcp/compare/v1.1.2...v1.1.3) (2026-09-24)
+
+
+### Bug Fixes
+
+* **deps:** bump dotenv in the production-majors group ([#64](https://github.com/chrischall/myersparkathleticzone-mcp/issues/64)) ([5a3d24f](https://github.com/chrischall/myersparkathleticzone-mcp/commit/5a3d24f8fb36b950498072fe5393309425ce6e6c))
+
 ## [1.1.2](https://github.com/chrischall/myersparkathleticzone-mcp/compare/v1.1.1...v1.1.2) (2026-09-23)
 
 
