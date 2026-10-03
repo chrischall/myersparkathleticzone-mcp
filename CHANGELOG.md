@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.1.4](https://github.com/chrischall/myersparkathleticzone-mcp/compare/v1.1.3...v1.1.4) (2026-10-03)
+
+
+### Bug Fixes
+
+* **deps:** bump @chrischall/mcp-utils to 2.10.0 ([#70](https://github.com/chrischall/myersparkathleticzone-mcp/issues/70)) ([bdccfdd](https://github.com/chrischall/myersparkathleticzone-mcp/commit/bdccfdd87004afbc0996c7f740eaed0081766280))
+* **deps:** bump @chrischall/mcp-utils to 2.12.0 ([#71](https://github.com/chrischall/myersparkathleticzone-mcp/issues/71)) ([298517e](https://github.com/chrischall/myersparkathleticzone-mcp/commit/298517e18ae2c5ca9bda92e12454cba800f87774))
+* **deps:** bump @chrischall/mcp-utils to 2.13.0 ([#72](https://github.com/chrischall/myersparkathleticzone-mcp/issues/72)) ([748ce4d](https://github.com/chrischall/myersparkathleticzone-mcp/commit/748ce4d11299cce2f18152c4cf5327c1933102b1))
+* **deps:** bump dotenv in the production-dependencies group ([#66](https://github.com/chrischall/myersparkathleticzone-mcp/issues/66)) ([2afb9c5](https://github.com/chrischall/myersparkathleticzone-mcp/commit/2afb9c5147cccf9c2c5a0ab8a5feb9ad070df3bf))
+* report CDN/WAF blocks as edge_blocked, not a rejected credential (mcp-utils 2.9.0) ([#68](https://github.com/chrischall/myersparkathleticzone-mcp/issues/68)) ([1dbc67d](https://github.com/chrischall/myersparkathleticzone-mcp/commit/1dbc67d505a738b84ae1ab395db244ca7057a517))
+
 ## [1.1.3](https://github.com/chrischall/myersparkathleticzone-mcp/compare/v1.1.2...v1.1.3) (2026-09-24)
 
 
