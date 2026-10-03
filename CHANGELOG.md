@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.5](https://github.com/chrischall/myersparkathleticzone-mcp/compare/v1.1.4...v1.1.5) (2026-10-03)
+
+
+### Bug Fixes
+
+* **deps:** bump dotenv ([#75](https://github.com/chrischall/myersparkathleticzone-mcp/issues/75)) ([8d1994a](https://github.com/chrischall/myersparkathleticzone-mcp/commit/8d1994a7a60ff6d64060e4ab7650be1b7277fdb1))
+
 ## [1.1.4](https://github.com/chrischall/myersparkathleticzone-mcp/compare/v1.1.3...v1.1.4) (2026-10-03)
 
 
