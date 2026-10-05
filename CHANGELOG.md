@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.5](https://github.com/chrischall/myersparkathleticzone-mcp/compare/v1.1.4...v1.1.5) (2026-10-05)
+
+
+### Bug Fixes
+
+* **deps:** bump dotenv ([#75](https://github.com/chrischall/myersparkathleticzone-mcp/issues/75)) ([8d1994a](https://github.com/chrischall/myersparkathleticzone-mcp/commit/8d1994a7a60ff6d64060e4ab7650be1b7277fdb1))
+* **deps:** require @chrischall/mcp-utils 2.14.0 and MCP SDK 2.3.0 ([#77](https://github.com/chrischall/myersparkathleticzone-mcp/issues/77)) ([1211231](https://github.com/chrischall/myersparkathleticzone-mcp/commit/1211231aacf6c51d2f259a50ab51194398219220))
+
 ## [1.1.4](https://github.com/chrischall/myersparkathleticzone-mcp/compare/v1.1.3...v1.1.4) (2026-10-03)
 
 
