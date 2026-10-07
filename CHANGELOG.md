@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.6](https://github.com/chrischall/myersparkathleticzone-mcp/compare/v1.1.5...v1.1.6) (2026-10-07)
+
+
+### Bug Fixes
+
+* **deps:** pick up mcp-utils 2.15.0 (MCP_CONFIRM_ELICITATION=off opt-out) ([#78](https://github.com/chrischall/myersparkathleticzone-mcp/issues/78)) ([3a54505](https://github.com/chrischall/myersparkathleticzone-mcp/commit/3a545057895a3d00fd97f867205c223598439471))
+
 ## [1.1.5](https://github.com/chrischall/myersparkathleticzone-mcp/compare/v1.1.4...v1.1.5) (2026-10-05)
 
 
