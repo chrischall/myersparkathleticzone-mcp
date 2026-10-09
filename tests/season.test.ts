@@ -7,6 +7,18 @@ describe('currentSchoolYear', () => {
     expect(currentSchoolYear(new Date('2026-08-01T12:00:00Z'))).toBe('2026-2027');
   });
 
+  it('rolls over at midnight in the school\'s time zone, not at midnight UTC', () => {
+    // 01:00Z on 1 August is still 21:00 on 31 July in Charlotte (EDT).
+    expect(currentSchoolYear(new Date('2026-08-01T01:00:00Z'))).toBe('2025-2026');
+    // 04:30Z on 1 August is 00:30 local — the new season has begun.
+    expect(currentSchoolYear(new Date('2026-08-01T04:30:00Z'))).toBe('2026-2027');
+  });
+
+  it('uses the year as observed in the school\'s zone across New Year', () => {
+    // 03:00Z on 1 January 2027 is still 31 December 2026 in Charlotte (EST).
+    expect(currentSchoolYear(new Date('2027-01-01T03:00:00Z'))).toBe('2026-2027');
+  });
+
   it('keeps the same label through the spring half of the year', () => {
     expect(currentSchoolYear(new Date('2026-12-25T12:00:00Z'))).toBe('2026-2027');
     expect(currentSchoolYear(new Date('2027-05-01T12:00:00Z'))).toBe('2026-2027');

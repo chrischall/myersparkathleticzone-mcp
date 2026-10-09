@@ -1,13 +1,17 @@
 import { createHelpfulError } from '@chrischall/mcp-utils';
+import { DEFAULT_TIME_ZONE } from './time.js';
 
 /**
  * The site labels seasons by school year ("2026-2027"). Fall sports start in
  * mid-August and the site's own upcoming-events window opens on 1 August, so
- * that is the rollover point used here.
+ * that is the rollover point used here — 1 August at the SCHOOL, not in UTC:
+ * reading the UTC calendar flips the season from 8pm ET on 31 July.
  */
-export function currentSchoolYear(now: Date = new Date()): string {
-  const y = now.getUTCFullYear();
-  const startYear = now.getUTCMonth() >= 7 ? y : y - 1; // month 7 === August
+export function currentSchoolYear(now: Date = new Date(), timeZone: string = DEFAULT_TIME_ZONE): string {
+  const parts = new Intl.DateTimeFormat('en-US', { timeZone, year: 'numeric', month: 'numeric' }).formatToParts(now);
+  const y = Number(parts.find((p) => p.type === 'year')?.value);
+  const month = Number(parts.find((p) => p.type === 'month')?.value); // 1-12
+  const startYear = month >= 8 ? y : y - 1;
   return `${startYear}-${startYear + 1}`;
 }
 
