@@ -1,4 +1,4 @@
-import { readEnvVar, McpToolError, createHelpfulError, truncateErrorMessage, messageOf } from '@chrischall/mcp-utils';
+import { currentCallSignal, readEnvVar, McpToolError, createHelpfulError, truncateErrorMessage, messageOf } from '@chrischall/mcp-utils';
 import { parseFlightRows, harvest, MATCHERS, type EntityKind, type FlightObject } from './flight.js';
 
 /** Default deployment this server targets. Both are overridable via env. */
@@ -30,6 +30,12 @@ export class AthleticZoneClient {
   readonly schoolId: string;
   private readonly doFetch: typeof fetch;
   private readonly timeoutMs: number;
+  /**
+   * A bad MPAZ_SITE_URL, reported on the first call rather than thrown here:
+   * this constructor backs a module-level singleton, and throwing at import
+   * would take the whole server down instead of failing one tool call.
+   */
+  private readonly configError: McpToolError | undefined;
 
   constructor(opts: AthleticZoneClientOptions = {}) {
     this.siteUrl = (opts.siteUrl ?? readEnvVar('MPAZ_SITE_URL') ?? DEFAULT_SITE_URL).replace(/\/+$/, '');
@@ -39,11 +45,18 @@ export class AthleticZoneClient {
     const impl = opts.fetchImpl;
     this.doFetch = impl ? (input, init) => impl(input, init) : (input, init) => globalThis.fetch(input, init);
     this.timeoutMs = opts.timeoutMs ?? 20_000;
+    this.configError = siteUrlError(this.siteUrl);
   }
 
-  /** Build an absolute page URL, dropping params that are unset. */
+  /**
+   * Build an absolute page URL, dropping params that are unset.
+   *
+   * `path` is appended to the site URL rather than resolved against it, so a
+   * site served under a path prefix keeps that prefix.
+   */
   url(path: string, query: Record<string, string | undefined> = {}): string {
-    const u = new URL(path, this.siteUrl + '/');
+    if (this.configError) throw this.configError;
+    const u = new URL(this.siteUrl + (path.startsWith('/') ? path : `/${path}`));
     for (const [k, v] of Object.entries(query)) {
       if (v !== undefined && v !== null && v !== '') u.searchParams.set(k, v);
     }
@@ -53,23 +66,43 @@ export class AthleticZoneClient {
   /** Fetch a page as an RSC flight document. */
   async flight(path: string, query: Record<string, string | undefined> = {}): Promise<string> {
     const url = this.url(path, query);
-    let response: Response;
-    try {
-      response = await this.doFetch(url, {
-        headers: { RSC: '1', accept: 'text/x-component,*/*' },
-        signal: AbortSignal.timeout(this.timeoutMs),
-      });
-    } catch (err) {
-      throw new McpToolError(`Could not reach ${this.siteUrl}: ${truncateErrorMessage(messageOf(err))}`, {
+    const unreachable = (err: unknown) =>
+      new McpToolError(`Could not reach ${this.siteUrl}: ${truncateErrorMessage(messageOf(err))}`, {
         hint: 'Check network access, or set MPAZ_SITE_URL if the site moved.',
       });
+    // The caller's cancellation (ambient, set by mcp-utils around every tool
+    // call) is combined with the timeout, so a cancelled call stops fetching.
+    const caller = currentCallSignal();
+    const timeout = AbortSignal.timeout(this.timeoutMs);
+    const signal = caller ? AbortSignal.any([caller, timeout]) : timeout;
+    // A cancellation is the caller's decision, not a connectivity problem.
+    const failure = (err: unknown): unknown => (caller?.aborted ? caller.reason : unreachable(err));
+    let response: Response;
+    try {
+      response = await this.doFetch(url, { headers: { RSC: '1', accept: 'text/x-component,*/*' }, signal });
+    } catch (err) {
+      throw failure(err);
     }
     if (!response.ok) {
       throw new McpToolError(`${this.siteUrl} returned ${response.status} for ${path}`, {
         hint: response.status === 404 ? 'Check the sport slug — it is "<gender>-<sport>", e.g. boys-football.' : undefined,
       });
     }
-    return response.text();
+    let body: string;
+    try {
+      // The timeout covers the body too, so it can fire here as well as above.
+      body = await response.text();
+    } catch (err) {
+      throw failure(err);
+    }
+    if (isHtml(response, body)) {
+      throw new McpToolError(`${this.siteUrl} returned an HTML page for ${path}, not an RSC payload.`, {
+        hint:
+          'The site served a browser page instead of its RSC data — a bot challenge, or MPAZ_SITE_URL pointing at a ' +
+          'site that is not an Athletic Zone deployment. Check MPAZ_SITE_URL, or retry later.',
+      });
+    }
+    return body;
   }
 
   /**
@@ -130,6 +163,26 @@ export class AthleticZoneClient {
     }
     return rows;
   }
+}
+
+/** An HTML document rather than a flight stream: by content type, or by the body itself. */
+function isHtml(response: Response, body: string): boolean {
+  const type = response.headers.get('content-type') ?? '';
+  return /\btext\/html\b/i.test(type) || /^\s*<(?:!doctype|html)\b/i.test(body);
+}
+
+/** Why `siteUrl` cannot be used as a site origin, or undefined when it can. */
+function siteUrlError(siteUrl: string): McpToolError | undefined {
+  let parsed: URL | undefined;
+  try {
+    parsed = new URL(siteUrl);
+  } catch {
+    parsed = undefined;
+  }
+  if (parsed && (parsed.protocol === 'https:' || parsed.protocol === 'http:')) return undefined;
+  return new McpToolError(`MPAZ_SITE_URL "${truncateErrorMessage(siteUrl)}" is not an http(s) URL.`, {
+    hint: 'Set it to the site\'s full address including the scheme, e.g. https://www.myersparkathleticzone.com.',
+  });
 }
 
 /**

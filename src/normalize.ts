@@ -228,3 +228,39 @@ export function normalizeCoach(raw: FlightObject): Coach {
     position: named(raw.coachPosition),
   };
 }
+
+export interface Player {
+  id: string | null;
+  name: string | null;
+  jerseyNumber: string | null;
+  position: string | null;
+  graduationYear: string | null;
+}
+
+/** A string or finite number as a string; anything else is null. */
+const scalar = (v: unknown): string | null =>
+  typeof v === 'number' && Number.isFinite(v) ? String(v) : str(typeof v === 'string' ? v.trim() : v);
+
+/**
+ * Project a player record to an allow-list.
+ *
+ * The player shape is UNVERIFIED — no tenant checked publishes players — so
+ * this reads the coach layout (name under `.user`, falling back to top-level)
+ * and accepts a position as a string or a `{ name }` object. Projecting rather
+ * than passing the object through means anything else upstream attaches to a
+ * minor's record (photos, contact or birth details, internal ids) is dropped
+ * by default instead of handed to the caller.
+ */
+export function normalizePlayer(raw: FlightObject): Player {
+  const user = (raw.user as FlightObject | undefined) ?? {};
+  const first = str(user.firstName) ?? str(raw.firstName);
+  const last = str(user.lastName) ?? str(raw.lastName);
+  const name = [first, last].filter(Boolean).join(' ').replace(/\s+/g, ' ').trim();
+  return {
+    id: str(raw.id),
+    name: name.length > 0 ? name : null,
+    jerseyNumber: scalar(raw.jerseyNumber),
+    position: str(raw.position) ?? named(raw.position),
+    graduationYear: scalar(raw.graduationYear),
+  };
+}
