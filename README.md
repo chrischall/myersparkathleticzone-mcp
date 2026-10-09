@@ -55,6 +55,8 @@ Both optional:
 
 The site is one tenant of the PlayOn Sports / SportsEngine "Athletic Zone" platform, so setting both points the server at another school on it. Verified against Ballantyne Ridge (`https://www.ballantyneridgeathleticzone.com`, school id `21785`) as well as Myers Park.
 
+**Hosted deployments are Myers Park only.** The hosted (mint / claude.ai connector) build runs behind a static egress allow list that permits just `www.myersparkathleticzone.com`, so setting `MPAZ_SITE_URL` to another school there makes every call fail with "Could not reach". Pointing at another school works only with a local stdio install (npm / `.mcpb`).
+
 ## Known limits
 
 These are properties of the upstream site, not bugs, and the tools say so in their output rather than guessing:

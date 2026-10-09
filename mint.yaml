@@ -8,8 +8,10 @@ env:
   - name: MPAZ_SITE_URL
     required: false
     help: >-
-      Optional. Another Athletic Zone school site; defaults to
-      www.myersparkathleticzone.com.
+      Optional; defaults to www.myersparkathleticzone.com. Hosted (mint)
+      deployments are Myers Park only: their egress allow list permits just that host,
+      so pointing this at another Athletic Zone school fails every call.
+      Other schools work only with a local stdio install.
   - name: MPAZ_SCHOOL_ID
     required: false
     help: >-
