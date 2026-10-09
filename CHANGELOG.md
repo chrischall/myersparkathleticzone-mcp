@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.1.7](https://github.com/chrischall/myersparkathleticzone-mcp/compare/v1.1.6...v1.1.7) (2026-10-09)
+
+
+### Bug Fixes
+
+* declare the plugin MCP config under the mcpServers key Claude Code reads ([#85](https://github.com/chrischall/myersparkathleticzone-mcp/issues/85)) ([4345e1d](https://github.com/chrischall/myersparkathleticzone-mcp/commit/4345e1dfa47ee8a44f44772d9204da4f3cba07f8))
+* **deps:** bump source-map-js ([#82](https://github.com/chrischall/myersparkathleticzone-mcp/issues/82)) ([71ce5b2](https://github.com/chrischall/myersparkathleticzone-mcp/commit/71ce5b29a2733ec147a02ceb9cecdc34ce43986f))
+* **deps:** update @chrischall/mcp-utils to 3.0.0 ([#84](https://github.com/chrischall/myersparkathleticzone-mcp/issues/84)) ([0210080](https://github.com/chrischall/myersparkathleticzone-mcp/commit/0210080769be8a5da3f16d6f9cc693eb10c43904))
+* resolve low-severity audit findings ([#80](https://github.com/chrischall/myersparkathleticzone-mcp/issues/80)) ([17a52a3](https://github.com/chrischall/myersparkathleticzone-mcp/commit/17a52a36b5ef2098892713ef41ac7963171f297b))
+
+
+### Documentation
+
+* note hosted deployments are Myers Park only ([#83](https://github.com/chrischall/myersparkathleticzone-mcp/issues/83)) ([7bca3ce](https://github.com/chrischall/myersparkathleticzone-mcp/commit/7bca3cead3fc982de5866e84dbbdd2c4bd7dc427))
+
 ## [1.1.6](https://github.com/chrischall/myersparkathleticzone-mcp/compare/v1.1.5...v1.1.6) (2026-10-07)
 
 
