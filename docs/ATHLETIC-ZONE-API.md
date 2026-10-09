@@ -138,7 +138,7 @@ The name lives under **`.user`**; the sibling top-level `firstName`/`lastName` a
 
 ### Players
 
-The roster container exposes `roster.players`, **empty (`[]`) on every team checked** — this school publishes coaches but not players. The player shape is therefore **unverified**; `MATCHERS.players` is a best-effort signature (`jerseyNumber`, or a name plus `graduationYear`) and `mpaz_get_roster` returns raw player objects rather than a projection invented from guesswork.
+The roster container exposes `roster.players`, **empty (`[]`) on every team checked** — this school publishes coaches but not players. The player shape is therefore **unverified**; `MATCHERS.players` is a best-effort signature (`jerseyNumber`, or a name plus `graduationYear`) and `mpaz_get_roster` projects each match to an allow-list (`id`, `name`, `jerseyNumber`, `position`, `graduationYear`) so any other field upstream attaches to a minor's record is dropped rather than passed through. Re-checked 2026-10-08: every current-season roster on Myers Park and Ballantyne Ridge still has `players: []`.
 
 ### News (`publishedDatetimeUtc`), Videos (`sourceUrl` + `videoLengthSeconds`)
 

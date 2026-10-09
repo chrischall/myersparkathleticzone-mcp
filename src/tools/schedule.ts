@@ -2,7 +2,7 @@ import { z } from 'zod';
 import type { McpServer } from '@modelcontextprotocol/server';
 import { minifiedResult, toolAnnotations } from '@chrischall/mcp-utils';
 import { client } from '../client.js';
-import { normalizeEvent, normalizeCoach } from '../normalize.js';
+import { normalizeEvent, normalizeCoach, normalizePlayer } from '../normalize.js';
 import { currentSchoolYear, normalizeYear } from '../season.js';
 
 const YearArg = z
@@ -147,7 +147,7 @@ export function registerScheduleTools(server: McpServer): void {
         sportSlug,
         teamId,
         coaches: harvested.coaches.map(normalizeCoach),
-        players: harvested.players,
+        players: harvested.players.map(normalizePlayer),
         playersNote:
           harvested.players.length === 0 ? 'This team publishes no player roster — coaches only.' : undefined,
       });
