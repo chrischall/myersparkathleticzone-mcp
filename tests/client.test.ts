@@ -104,4 +104,49 @@ describe('AthleticZoneClient', () => {
     expect(String(fetchImpl.mock.calls[0][0])).toBe('https://www.example-athletics.com/schedule');
     expect(other.schoolId).toBe('99');
   });
+  it('wraps a timeout during the body read with the same actionable error as a connect failure', async () => {
+    const body = new ReadableStream({
+      pull(c) {
+        c.error(new DOMException('The operation was aborted due to timeout', 'TimeoutError'));
+      },
+    });
+    fetchImpl.mockResolvedValue(new Response(body, { status: 200, headers: { 'content-type': 'text/x-component' } }));
+    const err = await client.entities('/schedule', 'events', {}).catch((e) => e);
+    expect(err).toBeInstanceOf(Error);
+    expect(err.message).toMatch(/myersparkathleticzone\.com/);
+    expect(err.message).toMatch(/timeout/i);
+    expect(err.hint).toMatch(/MPAZ_SITE_URL|network/);
+  });
+
+  it('reports an HTML page as "not an RSC payload", not as a missing team/year redirect', async () => {
+    // A bot challenge, an ignored RSC header, or MPAZ_SITE_URL pointed at a
+    // non-Athletic-Zone site: the page has no flight rows, but blaming the
+    // team/year params sends the caller off to re-resolve ids for `/`.
+    fetchImpl.mockResolvedValue(res('<!DOCTYPE html><html><body>Checking your browser</body></html>', { contentType: 'text/html; charset=utf-8' }));
+    const err = await client.entities('/', 'news', {}).catch((e) => e);
+    expect(err).toBeInstanceOf(Error);
+    expect(err.message).toMatch(/RSC/);
+    expect(err.message).not.toMatch(/redirect/i);
+    expect(err.hint).not.toMatch(/team/i);
+    expect(err.hint).toMatch(/MPAZ_SITE_URL/);
+  });
+
+  it('rejects a site URL without an http(s) scheme with a helpful error rather than a bare "Invalid URL"', async () => {
+    const bad = new AthleticZoneClient({ fetchImpl: fetchImpl as unknown as typeof fetch, siteUrl: 'www.example-athletics.com' });
+    const err = await bad.entities('/schedule', 'events', {}).catch((e) => e);
+    expect(err).toBeInstanceOf(Error);
+    expect(err.message).toMatch(/MPAZ_SITE_URL/);
+    expect(err.hint).toMatch(/https:\/\//);
+    expect(fetchImpl).not.toHaveBeenCalled();
+  });
+
+  it('keeps a path prefix on the configured site URL', async () => {
+    const prefixed = new AthleticZoneClient({
+      fetchImpl: fetchImpl as unknown as typeof fetch,
+      siteUrl: 'https://athletics.example.com/myers-park/',
+    });
+    fetchImpl.mockResolvedValue(res(flightBody({ data: events })));
+    await prefixed.entities('/schedule', 'events', { year: '2026-2027' });
+    expect(String(fetchImpl.mock.calls[0][0])).toBe('https://athletics.example.com/myers-park/schedule?year=2026-2027');
+  });
 });
