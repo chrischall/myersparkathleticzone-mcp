@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import type { McpServer } from '@modelcontextprotocol/server';
-import { createHelpfulError, minifiedResult, toolAnnotations } from '@chrischall/mcp-utils';
+import { createHelpfulError, currentCallSignal, minifiedResult, toolAnnotations } from '@chrischall/mcp-utils';
 import { client, type AthleticZoneClient } from '../client.js';
 import { ownTeams, normalizeTeam, sportSlug, type Team } from '../normalize.js';
 import { rankTeams } from '../match.js';
@@ -74,7 +74,9 @@ export async function collectTeams(
       for (const t of raw.map(normalizeTeam)) {
         if (t.id && t.year === wanted && !found.has(t.id)) found.set(t.id, t);
       }
-    } catch {
+    } catch (err) {
+      // A cancelled call stops here rather than walking the remaining sports.
+      if (currentCallSignal()?.aborted) throw err;
       // One bad sport page must not lose the sports that did resolve.
       failedSports.push(slug);
     }

@@ -2,6 +2,7 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { withCallSignal } from '@chrischall/mcp-utils';
 import { AthleticZoneClient } from '../src/client.js';
 
 const FIX = join(dirname(fileURLToPath(import.meta.url)), 'fixtures');
@@ -149,4 +150,22 @@ describe('AthleticZoneClient', () => {
     await prefixed.entities('/schedule', 'events', { year: '2026-2027' });
     expect(String(fetchImpl.mock.calls[0][0])).toBe('https://athletics.example.com/myers-park/schedule?year=2026-2027');
   });
+  it('aborts the in-flight request when the MCP caller cancels the tool call', async () => {
+    let seen: AbortSignal | undefined;
+    fetchImpl.mockImplementation(
+      (_url: string, init: RequestInit) =>
+        new Promise((_resolve, reject) => {
+          seen = init.signal ?? undefined;
+          seen?.addEventListener('abort', () => reject(seen?.reason));
+        }),
+    );
+    const caller = new AbortController();
+    const call = withCallSignal(caller.signal, () => client.entities('/schedule', 'events', {}));
+    await vi.waitFor(() => expect(seen).toBeDefined());
+    caller.abort(new Error('cancelled by client'));
+    // The cancellation propagates as itself — not dressed up as "Could not reach".
+    await expect(call).rejects.toThrow('cancelled by client');
+    expect(seen?.aborted).toBe(true);
+  });
+
 });

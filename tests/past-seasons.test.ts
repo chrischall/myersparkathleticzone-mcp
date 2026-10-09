@@ -2,6 +2,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { withCallSignal } from '@chrischall/mcp-utils';
 import { collectTeams } from '../src/tools/teams.js';
 import type { AthleticZoneClient } from '../src/client.js';
 import { harvest, MATCHERS } from '../src/flight.js';
@@ -23,6 +24,23 @@ function fakeClient(routes: Record<string, unknown[]>): AthleticZoneClient {
 
 describe('collectTeams', () => {
   beforeEach(() => vi.clearAllMocks());
+
+  it('stops the per-sport fallback sweep once the call is cancelled', async () => {
+    // A cancelled call must not keep walking sport pages, and must not report
+    // the cancellation as a per-sport failure in a "successful" result.
+    const otherSport = { ...currentTeam, id: '7840999', sport: { name: 'Soccer' } };
+    const caller = new AbortController();
+    const entities = vi.fn(async (path: string, _kind: string, q: Record<string, string> = {}) => {
+      if (path === '/schedule') return q.year === '2026-2027' ? [currentTeam, otherSport] : [];
+      caller.abort(new Error('cancelled by client'));
+      throw caller.signal.reason;
+    });
+    const c = { schoolId: '10150', entities } as unknown as AthleticZoneClient;
+    const run = withCallSignal(caller.signal, () => collectTeams(c, '2024-2025', '2026-2027'));
+    await expect(run).rejects.toThrow('cancelled by client');
+    // two schedule reads + the first sport page, then stop
+    expect(entities).toHaveBeenCalledTimes(3);
+  });
 
   it('uses the all-school schedule when it has teams', async () => {
     const c = fakeClient({ '/schedule?2026-2027': [currentTeam] });

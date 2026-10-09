@@ -1,4 +1,4 @@
-import { readEnvVar, McpToolError, createHelpfulError, truncateErrorMessage, messageOf } from '@chrischall/mcp-utils';
+import { currentCallSignal, readEnvVar, McpToolError, createHelpfulError, truncateErrorMessage, messageOf } from '@chrischall/mcp-utils';
 import { parseFlightRows, harvest, MATCHERS, type EntityKind, type FlightObject } from './flight.js';
 
 /** Default deployment this server targets. Both are overridable via env. */
@@ -70,14 +70,18 @@ export class AthleticZoneClient {
       new McpToolError(`Could not reach ${this.siteUrl}: ${truncateErrorMessage(messageOf(err))}`, {
         hint: 'Check network access, or set MPAZ_SITE_URL if the site moved.',
       });
+    // The caller's cancellation (ambient, set by mcp-utils around every tool
+    // call) is combined with the timeout, so a cancelled call stops fetching.
+    const caller = currentCallSignal();
+    const timeout = AbortSignal.timeout(this.timeoutMs);
+    const signal = caller ? AbortSignal.any([caller, timeout]) : timeout;
+    // A cancellation is the caller's decision, not a connectivity problem.
+    const failure = (err: unknown): unknown => (caller?.aborted ? caller.reason : unreachable(err));
     let response: Response;
     try {
-      response = await this.doFetch(url, {
-        headers: { RSC: '1', accept: 'text/x-component,*/*' },
-        signal: AbortSignal.timeout(this.timeoutMs),
-      });
+      response = await this.doFetch(url, { headers: { RSC: '1', accept: 'text/x-component,*/*' }, signal });
     } catch (err) {
-      throw unreachable(err);
+      throw failure(err);
     }
     if (!response.ok) {
       throw new McpToolError(`${this.siteUrl} returned ${response.status} for ${path}`, {
@@ -89,7 +93,7 @@ export class AthleticZoneClient {
       // The timeout covers the body too, so it can fire here as well as above.
       body = await response.text();
     } catch (err) {
-      throw unreachable(err);
+      throw failure(err);
     }
     if (isHtml(response, body)) {
       throw new McpToolError(`${this.siteUrl} returned an HTML page for ${path}, not an RSC payload.`, {
