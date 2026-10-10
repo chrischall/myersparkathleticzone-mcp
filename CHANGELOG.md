@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.8](https://github.com/chrischall/myersparkathleticzone-mcp/compare/v1.1.7...v1.1.8) (2026-10-10)
+
+
+### Bug Fixes
+
+* **deps:** bump the production-dependencies group with 2 updates ([#88](https://github.com/chrischall/myersparkathleticzone-mcp/issues/88)) ([6879cec](https://github.com/chrischall/myersparkathleticzone-mcp/commit/6879ceca9cd853f478dbcaca2665cd581061cdd3))
+
 ## [1.1.7](https://github.com/chrischall/myersparkathleticzone-mcp/compare/v1.1.6...v1.1.7) (2026-10-09)
 
 
