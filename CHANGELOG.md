@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.9](https://github.com/chrischall/myersparkathleticzone-mcp/compare/v1.1.8...v1.1.9) (2026-10-16)
+
+
+### Bug Fixes
+
+* **plugin:** launch the published package so marketplace installs start ([#90](https://github.com/chrischall/myersparkathleticzone-mcp/issues/90)) ([ac2a35f](https://github.com/chrischall/myersparkathleticzone-mcp/commit/ac2a35f7df05998f9d8c3e5b7e821e7470b0dcd8))
+
 ## [1.1.8](https://github.com/chrischall/myersparkathleticzone-mcp/compare/v1.1.7...v1.1.8) (2026-10-10)
 
 
