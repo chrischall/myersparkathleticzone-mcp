@@ -22,3 +22,10 @@ egress:
     # Only hosts the SERVER process actually fetches. Hosts that appear
     # solely in a URL this server BUILDS and returns are excluded.
     - www.myersparkathleticzone.com
+examples:
+  - prompt: What Myers Park games are coming up this week, and where are they being played?
+    note: Reads the all-school upcoming-events window.
+  - prompt: How has the Myers Park varsity football team done so far this season? List each result and the overall record.
+    note: Resolves the team, then reads its completed games and scores.
+  - prompt: Summarize the latest Myers Park athletics news and list any game broadcast links on the site.
+    note: Reads homepage news posts and NFHS Network broadcast links.
