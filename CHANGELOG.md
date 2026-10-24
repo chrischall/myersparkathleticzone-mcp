@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.1.11](https://github.com/chrischall/myersparkathleticzone-mcp/compare/v1.1.10...v1.1.11) (2026-10-24)
+
+
+### Bug Fixes
+
+* **deps:** bump the production-dependencies group with 2 updates ([#100](https://github.com/chrischall/myersparkathleticzone-mcp/issues/100)) ([3e8cc34](https://github.com/chrischall/myersparkathleticzone-mcp/commit/3e8cc34f98d48b58f13b71f226594ab3057dab41))
+
+
+### Documentation
+
+* **mint:** add sample prompts for the public catalog ([#97](https://github.com/chrischall/myersparkathleticzone-mcp/issues/97)) ([24b2a83](https://github.com/chrischall/myersparkathleticzone-mcp/commit/24b2a83c507637da5bfc26b2dcf5d951f7904fd1))
+
 ## [1.1.10](https://github.com/chrischall/myersparkathleticzone-mcp/compare/v1.1.9...v1.1.10) (2026-10-17)
 
 
