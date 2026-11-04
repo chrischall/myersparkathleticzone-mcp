@@ -5,6 +5,7 @@ import { client, type AthleticZoneClient } from '../client.js';
 import { ownTeams, normalizeTeam, sportSlug, type Team } from '../normalize.js';
 import { rankTeams } from '../match.js';
 import { currentSchoolYear, normalizeYear } from '../season.js';
+import { schoolMeta } from './hints.js';
 
 const YearArg = z
   .string()
@@ -123,6 +124,7 @@ export function registerTeamTools(server: McpServer): void {
         idempotent: true,
         openWorld: true,
       }),
+      _meta: schoolMeta('lookup', { aliases: ['teams', 'sports offered'] }),
       inputSchema: z.object({ year: YearArg }),
     },
     async ({ year }) => {
@@ -152,6 +154,7 @@ export function registerTeamTools(server: McpServer): void {
         idempotent: true,
         openWorld: true,
       }),
+      _meta: schoolMeta('lookup'),
       inputSchema: z.object({
         query: z.string().min(1).describe('Team name fragment, e.g. "varsity football"'),
         year: YearArg,

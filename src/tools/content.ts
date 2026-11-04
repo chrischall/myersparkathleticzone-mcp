@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { minifiedResult, toolAnnotations } from '@chrischall/mcp-utils';
 import { client } from '../client.js';
 import { VERSION } from '../version.js';
+import { briefNewsLine, briefResult, schoolMeta, ViewArg } from './hints.js';
 
 export function registerContentTools(server: McpServer): void {
   server.registerTool(
@@ -11,11 +12,16 @@ export function registerContentTools(server: McpServer): void {
       title: 'List news posts',
       description: 'Recent news posts from the athletics site homepage, newest first. Read-only.',
       annotations: toolAnnotations({ title: 'List news posts', readOnly: true, idempotent: true, openWorld: true }),
-      inputSchema: z.object({}),
+      _meta: schoolMeta('whats-new', {
+        canonical: true,
+        aliases: ['news', 'sports news', 'athletics news', 'announcements'],
+      }),
+      inputSchema: z.object({ view: ViewArg }),
     },
-    async () => {
+    async ({ view }) => {
       const news = await client.entities('/', 'news');
       news.sort((a, b) => String(b.publishedDatetimeUtc ?? '').localeCompare(String(a.publishedDatetimeUtc ?? '')));
+      if (view === 'brief') return briefResult(news.map(briefNewsLine));
       return minifiedResult({ count: news.length, news });
     },
   );
@@ -34,6 +40,7 @@ export function registerContentTools(server: McpServer): void {
         idempotent: true,
         openWorld: true,
       }),
+      _meta: schoolMeta('lookup', { aliases: ['broadcast', 'livestream', 'stream', 'watch the game'] }),
       inputSchema: z.object({}),
     },
     async () => {
@@ -54,6 +61,7 @@ export function registerContentTools(server: McpServer): void {
         'Photo galleries published on the site. Images sit on a public CDN and can be fetched directly, no auth. ' +
         'Read-only.',
       annotations: toolAnnotations({ title: 'List photo galleries', readOnly: true, idempotent: true, openWorld: true }),
+      _meta: schoolMeta('lookup', { aliases: ['photos', 'pictures', 'gallery'] }),
       inputSchema: z.object({}),
     },
     async () => {

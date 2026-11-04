@@ -4,6 +4,7 @@ import { minifiedResult, toolAnnotations } from '@chrischall/mcp-utils';
 import { client } from '../client.js';
 import { normalizeEvent, normalizeCoach, normalizePlayer } from '../normalize.js';
 import { currentSchoolYear, normalizeYear } from '../season.js';
+import { briefEventLine, briefResult, schoolMeta, ViewArg } from './hints.js';
 
 const YearArg = z
   .string()
@@ -43,12 +44,17 @@ export function registerScheduleTools(server: McpServer): void {
         idempotent: true,
         openWorld: true,
       }),
-      inputSchema: z.object({ year: YearArg }),
+      _meta: schoolMeta('whats-on', {
+        canonical: true,
+        aliases: ['games', 'game', 'sports', 'athletics', 'match', 'meet', 'mustangs', 'playing'],
+      }),
+      inputSchema: z.object({ year: YearArg, view: ViewArg }),
     },
-    async ({ year }) => {
+    async ({ year, view }) => {
       const season = year ? normalizeYear(year) : currentSchoolYear();
       const raw = await client.entities('/schedule', 'events', { year: season });
       const events = raw.map((e) => normalizeEvent(e, client.schoolId)).sort(byStart);
+      if (view === 'brief') return briefResult(events.map(briefEventLine));
       return minifiedResult({
         year: season,
         count: events.length,
@@ -71,6 +77,7 @@ export function registerScheduleTools(server: McpServer): void {
         idempotent: true,
         openWorld: true,
       }),
+      _meta: schoolMeta('whats-on', { aliases: ['season', 'games', 'fixtures', 'when do they play'] }),
       inputSchema: z.object({ sportSlug: SportSlugArg, teamId: TeamIdArg, year: YearArg }),
     },
     async ({ sportSlug, teamId, year }) => {
@@ -96,6 +103,7 @@ export function registerScheduleTools(server: McpServer): void {
         idempotent: true,
         openWorld: true,
       }),
+      _meta: schoolMeta('lookup', { aliases: ['score', 'scores', 'results', 'who won', 'record'] }),
       inputSchema: z.object({ sportSlug: SportSlugArg, teamId: TeamIdArg, year: YearArg }),
     },
     async ({ sportSlug, teamId, year }) => {
@@ -134,6 +142,7 @@ export function registerScheduleTools(server: McpServer): void {
         idempotent: true,
         openWorld: true,
       }),
+      _meta: schoolMeta('lookup', { aliases: ['coach', 'coaches', 'roster', 'players'] }),
       inputSchema: z.object({ sportSlug: SportSlugArg, teamId: TeamIdArg, year: YearArg }),
     },
     async ({ sportSlug, teamId, year }) => {
