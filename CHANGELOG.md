@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.2.0](https://github.com/chrischall/myersparkathleticzone-mcp/compare/v1.1.11...v1.2.0) (2026-11-04)
+
+
+### Features
+
+* context-group hints, a brief view on the schedule and news ([#105](https://github.com/chrischall/myersparkathleticzone-mcp/issues/105)) ([8af86a6](https://github.com/chrischall/myersparkathleticzone-mcp/commit/8af86a6ab888dd0e1eec6e5c49bde8ba6c5d83cf))
+
+
+### Bug Fixes
+
+* **deps:** bump dotenv ([#103](https://github.com/chrischall/myersparkathleticzone-mcp/issues/103)) ([6278c5e](https://github.com/chrischall/myersparkathleticzone-mcp/commit/6278c5e536cd99a728f7e9fd81dd2db6bcd6ffff))
+
 ## [1.1.11](https://github.com/chrischall/myersparkathleticzone-mcp/compare/v1.1.10...v1.1.11) (2026-10-29)
 
 
