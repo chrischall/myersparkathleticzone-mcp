@@ -21,7 +21,7 @@ export function registerContentTools(server: McpServer): void {
     async ({ view }) => {
       const news = await client.entities('/', 'news');
       news.sort((a, b) => String(b.publishedDatetimeUtc ?? '').localeCompare(String(a.publishedDatetimeUtc ?? '')));
-      if (view === 'brief') return briefResult(news.map(briefNewsLine));
+      if (view === 'brief') return briefResult(news.map(briefNewsLine), 'News post titles are written by the athletics site\'s staff.');
       return minifiedResult({ count: news.length, news });
     },
   );

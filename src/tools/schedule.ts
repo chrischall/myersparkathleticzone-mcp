@@ -54,7 +54,7 @@ export function registerScheduleTools(server: McpServer): void {
       const season = year ? normalizeYear(year) : currentSchoolYear();
       const raw = await client.entities('/schedule', 'events', { year: season });
       const events = raw.map((e) => normalizeEvent(e, client.schoolId)).sort(byStart);
-      if (view === 'brief') return briefResult(events.map(briefEventLine));
+      if (view === 'brief') return briefResult(events.map(briefEventLine), 'Team and opponent names are published by the athletics site.');
       return minifiedResult({
         year: season,
         count: events.length,

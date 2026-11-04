@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { minifiedResult, UNTRUSTED_CONTENT_RULE, untrustedEnvelope } from '@chrischall/mcp-utils';
 import type { NormalizedEvent } from '../normalize.js';
 
 /**
@@ -43,8 +44,15 @@ export const ViewArg = z
 
 const BRIEF_MAX = 120;
 
-/** `title — date — status`, shortening the title so the line is ≤ 120 chars. */
-function line(title: string, date: string | null | undefined, status: string): string {
+/**
+ * `title — date — status`, cut to ≤ 120 chars as a WHOLE by shortening the
+ * starts with `-- ` (a note) or `\` (the escape itself) gets one leading `\`,
+ * starts with `-- ` (a note) or `\\` (the escape itself) gets one leading `\\`,
+ * which the host strips after its note check — so a site-written title can
+ * never masquerade as a note line.
+ */
+function line(rawTitle: string, date: string | null | undefined, status: string): string {
+  const title = rawTitle.startsWith('-- ') || rawTitle.startsWith('\\') ? `\\${rawTitle}` : rawTitle;
   const tail = ` — ${date ?? 'no date'} — ${status}`;
   const room = BRIEF_MAX - tail.length;
   const shown = title.length > room ? `${title.slice(0, Math.max(room - 1, 0))}…` : title;
@@ -90,7 +98,14 @@ export function briefNewsLine(post: Record<string, unknown>): string {
   return line(str(post.title) ?? '(untitled)', str(post.publishedDatetimeUtc), 'posted');
 }
 
-/** A brief answer: the lines as plain text. */
-export function briefResult(lines: string[]) {
-  return { content: [{ type: 'text' as const, text: lines.join('\n') }] };
+/**
+ * A brief answer. Every title here is text the athletics site published (news
+ * posts, team names, opponent schools), so the lines ride inside the fleet's
+ * untrusted-data envelope as `data: string[]`, minified, markers first. An
+ * empty read answers the single note line `-- none`.
+ */
+export function briefResult(lines: string[], whoWrote: string) {
+  return minifiedResult(
+    untrustedEnvelope(lines.length === 0 ? ['-- none'] : lines, { note: `${whoWrote} ${UNTRUSTED_CONTENT_RULE}` }),
+  );
 }
