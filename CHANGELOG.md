@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.1](https://github.com/chrischall/myersparkathleticzone-mcp/compare/v1.2.0...v1.2.1) (2026-11-04)
+
+
+### Bug Fixes
+
+* **brief:** align the brief view with the fleet contract ([#106](https://github.com/chrischall/myersparkathleticzone-mcp/issues/106)) ([e32d5c7](https://github.com/chrischall/myersparkathleticzone-mcp/commit/e32d5c7cf4cc488b6e55e1ec213f2ce1fc81af19))
+
 ## [1.2.0](https://github.com/chrischall/myersparkathleticzone-mcp/compare/v1.1.11...v1.2.0) (2026-11-04)
 
 
