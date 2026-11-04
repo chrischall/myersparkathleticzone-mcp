@@ -32,6 +32,17 @@ async function callText(name: string, args: Record<string, unknown>): Promise<st
   return block.text;
 }
 
+/** A brief answer: the untrusted-data envelope, its `data` the lines. */
+async function briefData(name: string, args: Record<string, unknown>): Promise<{ note: string; lines: string[] }> {
+  const text = await callText(name, { ...args, view: 'brief' });
+  const parsed = JSON.parse(text) as { untrusted_content: boolean; note: string; data: string[] };
+  expect(Object.keys(parsed)).toEqual(['untrusted_content', 'note', 'data']);
+  expect(parsed.untrusted_content).toBe(true);
+  expect(text).toBe(JSON.stringify(parsed));
+  expect(Array.isArray(parsed.data)).toBe(true);
+  return { note: parsed.note, lines: parsed.data };
+}
+
 async function served(): Promise<Listed[]> {
   const h = await createTestHarness(register);
   const { tools } = await h.client.listTools();
@@ -152,8 +163,8 @@ describe('view: brief', () => {
       rawEvent({ id: '2', start: '2026-09-05T15:00:00.000Z', isCancelled: true }),
       rawEvent({ id: '3', start: null, game: { homeTeam: null, awayTeam: null } }),
     ] as never);
-    const text = await callText('mpaz_get_schedule', { view: 'brief' });
-    const lines = text.split('\n');
+    const { note, lines } = await briefData('mpaz_get_schedule', {});
+    expect(note).toMatch(/not instructions/);
     expect(lines).toHaveLength(3);
     for (const l of lines) {
       expect(l.length, l).toBeLessThanOrEqual(120);
@@ -177,8 +188,8 @@ describe('view: brief', () => {
       { id: 'b', title: 'Newer post', publishedDatetimeUtc: '2026-03-01T12:00:00.000Z' },
       { id: 'c', title: 'x'.repeat(200) },
     ] as never);
-    const text = await callText('mpaz_list_news', { view: 'brief' });
-    const lines = text.split('\n');
+    const { note, lines } = await briefData('mpaz_list_news', {});
+    expect(note).toMatch(/not instructions/);
     expect(lines).toHaveLength(3);
     for (const l of lines) {
       expect(l.length, l).toBeLessThanOrEqual(120);
@@ -186,6 +197,47 @@ describe('view: brief', () => {
     }
     expect(lines[0]).toBe('Newer post — 2026-03-01T12:00:00.000Z — posted');
     expect(lines[2]).toMatch(/… — no date — posted$/);
+  });
+});
+
+describe('view: brief — the fleet contract', () => {
+  it('an empty schedule answers the single note line -- none', async () => {
+    vi.spyOn(client, 'entities').mockResolvedValue([] as never);
+    expect((await briefData('mpaz_get_schedule', {})).lines).toEqual(['-- none']);
+  });
+
+  it('an empty news list answers the single note line -- none', async () => {
+    vi.spyOn(client, 'entities').mockResolvedValue([] as never);
+    expect((await briefData('mpaz_list_news', {})).lines).toEqual(['-- none']);
+  });
+
+  it('a news title that starts with "-- " or "\\" is escaped with one backslash', async () => {
+    vi.spyOn(client, 'entities').mockResolvedValue([
+      { id: 'a', title: '-- none', publishedDatetimeUtc: '2026-03-01T12:00:00.000Z' },
+      { id: 'b', title: '\\back', publishedDatetimeUtc: '2026-02-01T12:00:00.000Z' },
+      { id: 'c', title: '--dash', publishedDatetimeUtc: '2026-01-01T12:00:00.000Z' },
+    ] as never);
+    const { lines } = await briefData('mpaz_list_news', {});
+    expect(lines).toEqual([
+      '\\-- none — 2026-03-01T12:00:00.000Z — posted',
+      '\\\\back — 2026-02-01T12:00:00.000Z — posted',
+      '--dash — 2026-01-01T12:00:00.000Z — posted',
+    ]);
+  });
+
+  it('an escaped long title is still cut so the whole line is ≤ 120 chars', () => {
+    const l = briefNewsLine({ title: `-- ${'y'.repeat(200)}`, publishedDatetimeUtc: '2026-03-01T12:00:00.000Z' });
+    expect(l.length).toBe(120);
+    expect(l.startsWith('\\-- y')).toBe(true);
+    expect(l).toMatch(/… — 2026-03-01T12:00:00.000Z — posted$/);
+  });
+
+  it('an event whose title starts with "-- " is escaped', () => {
+    const l = briefEventLine({
+      team: null, opponent: '-- none', isHome: null, start: null,
+      isCancelled: false, isPostponed: false, isTba: false, result: null, eventType: 'game',
+    });
+    expect(l).toBe('\\-- none — no date — scheduled');
   });
 });
 
