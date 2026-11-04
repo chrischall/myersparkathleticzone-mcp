@@ -25,6 +25,17 @@ If a team tool reports "Team … Not Found", the id is stale — re-resolve it f
 - **News / broadcasts / photos** → `mpaz_list_news`, `mpaz_list_videos`, `mpaz_list_photo_galleries`.
 - **Is it up?** → `mpaz_healthcheck`.
 
+## In context groups
+
+On a host with context groups (mcp-host's `school` group), this server's tools carry `_meta.mint` hints and join the **school** group beside the other school sources:
+
+- **What's on** → `mpaz_get_schedule` is the canonical read: the school's upcoming games across every team. No range arguments (it answers the site's upcoming window) and no subject — the site is one school's public page, with no children or accounts of the person to list.
+- **What's new** → `mpaz_list_news` is the canonical read: athletics news, newest first.
+- Both take `view: "brief"` — one line per item, `title — <ISO date | no date> — <status>` (an event's status is cancelled / postponed / its result / time tba / home / away).
+- Everything else is a `lookup` (teams, rosters, scores, broadcasts, photos); `mpaz_get_team_schedule` is a non-canonical `whats-on` for one team's season.
+- A compound ask looks like "what's due for the kids this week — and any home games?": the host answers the assignments from the homework sources and the games from this server, in one reply.
+- Public site, no sign-in and no browser bridge: this member never answers "needs your browser open".
+
 ## Reading the results
 
 - `startLocal` is the kickoff in the school's own time zone (`timeZone`, normally America/New_York) — quote it as-is. `start` is the same moment as a true UTC instant; do **not** convert `startLocal`, and don't read `start` as local time.
