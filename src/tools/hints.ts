@@ -46,10 +46,9 @@ const BRIEF_MAX = 120;
 
 /**
  * `title — date — status`, cut to ≤ 120 chars as a WHOLE by shortening the
- * starts with `-- ` (a note) or `\` (the escape itself) gets one leading `\`,
- * starts with `-- ` (a note) or `\\` (the escape itself) gets one leading `\\`,
- * which the host strips after its note check — so a site-written title can
- * never masquerade as a note line.
+ * title first. A line that would start with `-- ` (a note) or `\` (the
+ * escape itself) gets one leading `\`, which the host strips after its note
+ * check — so a site-written title can never masquerade as a note line.
  */
 function line(rawTitle: string, date: string | null | undefined, status: string): string {
   const title = rawTitle.startsWith('-- ') || rawTitle.startsWith('\\') ? `\\${rawTitle}` : rawTitle;
